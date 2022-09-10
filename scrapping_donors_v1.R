@@ -41,9 +41,39 @@ candidates <- candidate_pages %>%
 candidate_pages <- candidates %>%
   unnest(district)
 
+write.csv(candidate_pages, "candidate_pages.csv")
+
+
 #170 Districts (120 reps + 50 senators) so let's confirm we got all of them
 check <- candidate_pages %>%
-  filter(grepl('District', district))
+  filter(grepl('District', district)) %>%
+  str_trim(district, side = "both")
+#Only returning XX
+
+#After investigating it looks like some members just aren't on the list on Transparency USA.
+#Some aren't on TUSA altogether.
+
+#Find missing reps ####
+#I'll need to manually enter missing members. I could do a join that leaves only unmatched
+house <- tibble(
+  loc = "North Carolina House of Representatives District",
+  numbers = 1:120
+  )
+
+house <- house %>%
+  unite(district, loc:numbers, sep = " ", remove = TRUE)
+
+senate <- tibble(
+  loc = "North Carolina State Senate District",
+  numbers = 1:50
+  )
+
+senate <- senate %>%
+  unite(district, loc:numbers, sep=" ", remove = TRUE)
+
+check <- bind_rows(house, senate)
+
+anti_bind
 
 #### NEW and not working ####
 
