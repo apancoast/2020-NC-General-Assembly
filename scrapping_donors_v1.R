@@ -14,7 +14,7 @@ get_candidates <- function(page) {
     html_nodes(".table-hover a") %>%
     html_attr("href") %>%
     as_tibble() %>%
-    transmute(links = paste0("https://www.transparencyusa.org", value, "/donors?by=donorTypeCode", sep=""))
+    transmute(links = paste0("https://www.transparencyusa.org", value, "/donors?cycle=2020-election-cycle&by=donorTypeCode", sep=""))
 }
 
 #Scrape candidate links
@@ -43,55 +43,79 @@ candidate_pages <- candidates %>%
 
 #170 Districts (120 reps + 50 senators) so let's confirm we got all of them
 check <- candidate_pages %>%
+  select(links, district) %>%
   filter(grepl('District', district)) %>%
-  str_trim(district, side = "both")
-#Only returning XX
+  mutate(district = str_trim(district, side = "both"))
+#Only returning 162. Eight missing
 
 #After investigating it looks like some members just aren't on the list on Transparency USA.
 #Some aren't on TUSA altogether.
 
 #Find missing reps ####
 #I'll need to manually enter missing members. I could do a join that leaves only unmatched
-house <- tibble(
+house <-
+  tibble(
   loc = "North Carolina House of Representatives District",
   numbers = 1:120
-)
+  )
 
 house <- house %>%
   unite(district, loc:numbers, sep = " ", remove = TRUE)
 
-senate <- tibble(
+senate <-
+  tibble(
   loc = "North Carolina State Senate District",
   numbers = 1:50
-)
+  )
 
 senate <- senate %>%
   unite(district, loc:numbers, sep=" ", remove = TRUE)
 
-check <- bind_rows(house, senate)
+check_against <-
+  bind_rows(house, senate)
 
-anti_bind
+check_against <-
+  anti_join(check_against, check)
 
-#### NEW and not working ####
+check_against <-
+  check_against %>%
+    mutate(links = c("https://www.transparencyusa.org/nc/candidate/shelly-willingham/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/m-jack-nichols/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/evelyn-terry/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/john-bradford-iii/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/kelly-alexander-jr/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/robert-hanig/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/ernestine-bazemore/donors?cycle=2020-election-cycle&by=donorTypeCode",
+                     "https://www.transparencyusa.org/nc/candidate/donald-g-davis/donors?cycle=2020-election-cycle&by=donorTypeCode"
+                     )
+           )
 
-get_tot_donations = function(links) {
+check <- bind_rows(check, check_against)
+
+# Get Value of All Donations ####
+
+get_all_donations = function(links) {
   links <- read_html(links)
 
   links %>%
-    html_nodes(".hide-tablet+ .number") %>%
+    html_nodes(".user-display-stat:nth-child(1) .user-display-stat-counter") %>%
     html_text() %>%
     as_tibble()
-
 }
 
 #scrap total donations per candidate
-donations <- candidate_pages %>%
+donations <- check %>%
   mutate(tot_donations = map(links, get_tot_donations))
 
-candidate_pages <- donations %>%
+congress <- donations %>%
   unnest(tot_donations)
 
-#### END NEW ####
+#Going to save this df here so I don't always have to wait for the webscrapping when I reopen project
+write_csv(congress, "congress.csv")
+
+
+#I need to learn how to loop the below function in order to get all donations no matter how many pages there are
+# Get donation tables ####
 
 get_tables = function(links) {
   links <- read_html(links)
@@ -100,7 +124,7 @@ get_tables = function(links) {
     html_table()
 }
 
-candidate_pages <- candidate_pages %>%
+candidate_pages <- congress %>%
   mutate(tables = map(links, get_tables))
 
 donors <- candidate_pages %>%
