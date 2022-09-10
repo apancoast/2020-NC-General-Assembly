@@ -2,19 +2,19 @@ library(tidyverse)
 library(rvest)
 
 ### GET PAGES OF CANDIDATES ###
-candidate_pages <- tibble(page_num = 1:8)
+candidate_pages <- tibble(page_num = 1:7)
 candidate_pages <- candidate_pages %>%
-  mutate(page = paste0("https://www.transparencyusa.org/nc/candidates?cycle=2020-election-cycle&by=candidateOfficeHeld&order=desc", page_num))
+  mutate(page = paste0("https://www.transparencyusa.org/nc/candidates?by=candidateOfficeHeld&order=desc&page=", page_num))
 
 ### GET CANDIDATE'S PAGES ###
 get_candidates <- function(page) {
   page <- read_html(page)
 
   page %>%
-      html_nodes(".table-hover a") %>%
-      html_attr("href") %>%
-      as_tibble() %>%
-      transmute(links = paste0("https://www.transparencyusa.org", value, "/donors?by=donorTypeCode", sep=""))
+    html_nodes(".table-hover a") %>%
+    html_attr("href") %>%
+    as_tibble() %>%
+    transmute(links = paste0("https://www.transparencyusa.org", value, "/donors?by=donorTypeCode", sep=""))
 }
 
 #Scrape candidate links
@@ -30,8 +30,7 @@ get_district = function(links) {
   links %>%
     html_nodes(".profile-subtitle span") %>%
     html_text() %>%
-    as_tibble() %>%
-    rename("district" = "value")
+    as_tibble()
 }
 
 #scrap districts
@@ -39,11 +38,39 @@ candidates <- candidate_pages %>%
   mutate(district = map(links, get_district))
 
 candidate_pages <- candidates %>%
-  unnest(district)
+  unnest(district) %>%
+  rename(district = value)
 
 #170 Districts (120 reps + 50 senators) so let's confirm we got all of them
 check <- candidate_pages %>%
-  filter(grepl('District', district))
+  filter(grepl('District', district)) %>%
+  str_trim(district, side = "both")
+#Only returning XX
+
+#After investigating it looks like some members just aren't on the list on Transparency USA.
+#Some aren't on TUSA altogether.
+
+#Find missing reps ####
+#I'll need to manually enter missing members. I could do a join that leaves only unmatched
+house <- tibble(
+  loc = "North Carolina House of Representatives District",
+  numbers = 1:120
+)
+
+house <- house %>%
+  unite(district, loc:numbers, sep = " ", remove = TRUE)
+
+senate <- tibble(
+  loc = "North Carolina State Senate District",
+  numbers = 1:50
+)
+
+senate <- senate %>%
+  unite(district, loc:numbers, sep=" ", remove = TRUE)
+
+check <- bind_rows(house, senate)
+
+anti_bind
 
 #### NEW and not working ####
 
