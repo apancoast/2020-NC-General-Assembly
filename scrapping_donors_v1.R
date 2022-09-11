@@ -112,26 +112,62 @@ congress <- donations %>%
   unnest(tot_donations)
 
 congress <- congress %>%
-  mutate(links = paste0(links, "&page="))
+  mutate(links = paste0(links, "&page=")) %>%
+  rename(donations_total = value)
 
 #Going to save this df here so I don't always have to wait for the webscrapping when I reopen project
 write_csv(congress, "congress.csv")
+congress <- read.csv("congress.csv") %>%
+  rename(donations_total = value)
+
+test <- congress %>%
+  head(2) %>%
+  mutate(tester = as.numeric(88))
+
+
+### working with too many pages, but working####
+test <- congress %>%
+  head(2)
 
 output <- tibble()
-for (i in 1:1) {
+for (i in 1:88) { #Only using first number
   message(paste0("Page ",i))
-  links <- read_html(paste0(test$links,i))
-  tables <- html_table(links)
+  links <- congress %>% mutate(links = paste0(links,i))
+  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text())) #remove if not working
+
+  output <- bind_rows(output, links)
+
+}
+
+get_tables = function(links) {
+  links <- read_html(links)
+
+  links %>%
+    html_table()
+}
+
+test <- output %>%
+  mutate(tables = map(links, get_tables))
+
+donors <- donors %>%
+  unnest(tables)
+
+
+
+
+output <- tibble()
+for (nrow in nrow(output)) {
+  message(paste0("Page ",i))
+  links <- read_html(paste0(output$links))
+  tables <- html_table(output$links)
  # tables <- tables %>% as_tibble() %>% mutate(candidate= html_nodes(".profile-title") %>%  html_text())
                      # Then we are getting every htmml attributes values into columns and rows
                      # it's a copy/past from stackoverflow, it's works don't ask me how.
   tables <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
   tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text()))
 
-#  output <- bind_rows(output, tables)
+  output <- bind_rows(output, tables)
 }
-
-
 
 
 
@@ -147,10 +183,26 @@ how_many = function(links) {
     html_text()
 }
 
-test <- congress %>%
+test <- test %>%
   mutate(tables = map(links, how_many))
 ##88 is the highest I see, let's go with that
 ##I want the function to run the link and paste the following until x <= 88
+
+output <- tibble()
+for (i in 1:88) { #I think this will work if I just want to do 88 pages for every link
+  message(paste0("Page ",i))
+  links <- read_html(paste0(test$links,i))
+  tables <- html_table(links)
+  # tables <- tables %>% as_tibble() %>% mutate(candidate= html_nodes(".profile-title") %>%  html_text())
+  # Then we are getting every htmml attributes values into columns and rows
+  # it's a copy/past from stackoverflow, it's works don't ask me how.
+  tables <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
+  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text()))
+
+  output <- bind_rows(output, tables)
+}
+
+
 
 
 # Get donation tables ####
