@@ -143,6 +143,7 @@ congress <- congress %>%
   rename(pages = tables)
 
 write_csv(congress, "congress.csv")
+congress <- read.csv("congress.csv")
 
 output <- tibble()
 for (i in 1:88) { # 1:x where x is max number of pages
@@ -190,9 +191,12 @@ donors.4 <- output.2.1 %>%
 
 donors <- bind_rows(donors.1, donors.2, donors.3, donors.4)
 
-
 donors <- donors %>%
   unnest(tables)
+donors <- donors %>% #run twice apparently??
+  unnest(tables)
+
+write.csv(donors, "donors.csv")
 
 
 #Final and cleaning the table
