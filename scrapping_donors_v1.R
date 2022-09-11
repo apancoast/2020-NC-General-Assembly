@@ -1,6 +1,5 @@
 library(tidyverse)
 library(rvest)
-library(progress)
 
 ### GET PAGES OF CANDIDATES ###
 candidate_pages <- tibble(page_num = 1:7)
@@ -199,7 +198,6 @@ donors <- donors %>% #run twice apparently??
   unnest(tables)
 
 write.csv(donors, "donors.csv")
-
 
 #Final and cleaning the table
 
