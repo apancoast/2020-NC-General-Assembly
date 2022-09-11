@@ -1,5 +1,6 @@
 library(tidyverse)
 library(rvest)
+library(progress)
 
 ### GET PAGES OF CANDIDATES ###
 candidate_pages <- tibble(page_num = 1:7)
@@ -115,6 +116,55 @@ write_csv(congress, "congress.csv")
 
 
 #I need to learn how to loop the below function in order to get all donations no matter how many pages there are
+while (TRUE) {
+  html_nodes(".active~ .page-item+ .page-item .nuxt-link-active")
+}
+
+#maybe I don't need a loop. maybe I just want to use as many numbers as I need like in the beginning of the code
+#using this function to find out how many page nums I need
+how_many = function(links) {
+  links <- read_html(links)
+
+  links %>%
+    html_nodes(".page-link") %>%
+    html_text()
+}
+
+test <- congress %>%
+  mutate(tables = map(links, how_many))
+##88 is the highest I see, let's go with that
+##I want the function to run the link and paste the following until x <= 88
+
+x <- 1
+
+while (x <= 88) {
+  paste0(links, {{x}})
+  x <- x + 1
+}
+"&page={{x}}"
+
+get_tables = function(links) {
+ links <- "https://www.transparencyusa.org/nc/candidate/michael-lee/donors?cycle=2020-election-cycle&by=donorTypeCode"
+  links <- paste0(links, "&page=")
+
+  while (x <= 88) {
+    links <- as.tibble(paste0(links, {{x}}))
+    x <- x + 1
+  }
+
+  links <- read_html(links)
+
+  links %>%
+    html_table()
+}
+
+test2 <- test %>%
+  mutate(tables = map(links, get_tables))
+
+
+
+
+
 # Get donation tables ####
 
 get_tables = function(links) {
