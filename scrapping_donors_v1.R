@@ -42,6 +42,9 @@ candidate_pages <- candidates %>%
   unnest(district) %>%
   rename(district = value)
 
+write.csv(candidate_pages, "candidate_pages.csv")
+
+
 #170 Districts (120 reps + 50 senators) so let's confirm we got all of them
 check <- candidate_pages %>%
   select(links, district) %>%
@@ -62,7 +65,6 @@ house <-
 
 house <- house %>%
   unite(district, loc:numbers, sep = " ", remove = TRUE)
-
 senate <-
   tibble(
   loc = "North Carolina State Senate District",
@@ -210,10 +212,3 @@ donors.table <- donors %>%
   select(links, district, donation_total, donor_name, donor_type)
 
 write.csv(donors.table, "donor_table.csv")
-
-
-
-
-
-
-
