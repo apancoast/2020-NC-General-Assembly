@@ -93,7 +93,7 @@ check_against <-
 
 check <- bind_rows(check, check_against)
 
-# Get Value of All Donations ####
+# Get Donations Total ####
 
 get_all_donations = function(links) {
   links <- read_html(links)
@@ -120,60 +120,10 @@ write_csv(congress, "congress.csv")
 congress <- read.csv("congress.csv") %>%
   rename(donations_total = value)
 
-test <- congress %>%
-  head(2) %>%
-  mutate(tester = as.numeric(88))
+# Get each donation ####
 
+## Create donor page links for each candidate ####
 
-### working with too many pages, but working####
-test <- congress %>%
-  head(2)
-
-output <- tibble()
-for (i in 1:88) { #Only using first number
-  message(paste0("Page ",i))
-  links <- congress %>% mutate(links = paste0(links,i))
-  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text())) #remove if not working
-
-  output <- bind_rows(output, links)
-
-}
-
-get_tables = function(links) {
-  links <- read_html(links)
-
-  links %>%
-    html_table()
-}
-
-test <- output %>%
-  mutate(tables = map(links, get_tables))
-
-donors <- donors %>%
-  unnest(tables)
-
-
-
-
-output <- tibble()
-for (nrow in nrow(output)) {
-  message(paste0("Page ",i))
-  links <- read_html(paste0(output$links))
-  tables <- html_table(output$links)
- # tables <- tables %>% as_tibble() %>% mutate(candidate= html_nodes(".profile-title") %>%  html_text())
-                     # Then we are getting every htmml attributes values into columns and rows
-                     # it's a copy/past from stackoverflow, it's works don't ask me how.
-  tables <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
-  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text()))
-
-  output <- bind_rows(output, tables)
-}
-
-
-
-#I need to learn how to loop the below function in order to get all donations no matter how many pages there are
-
-#maybe I don't need a loop. maybe I just want to use as many numbers as I need like in the beginning of the code
 #using this function to find out how many page nums I need
 how_many = function(links) {
   links <- read_html(links)
@@ -183,42 +133,67 @@ how_many = function(links) {
     html_text()
 }
 
-test <- test %>%
-  mutate(tables = map(links, how_many))
-##88 is the highest I see, let's go with that
-##I want the function to run the link and paste the following until x <= 88
+congress <- congress %>%
+  mutate(tables = map(links, how_many)) %>%
+  unnest(tables) %>% ##Working to here. trying next lines
+  mutate(tables = as.numeric(tables)) %>%
+  filter(!is.na(tables)) %>%
+  group_by(district) %>%
+  filter(tables == max(tables)) %>%
+  rename(pages = tables)
+
+write_csv(congress, "congress.csv")
 
 output <- tibble()
-for (i in 1:88) { #I think this will work if I just want to do 88 pages for every link
+for (i in 1:88) { # 1:x where x is max number of pages
   message(paste0("Page ",i))
-  links <- read_html(paste0(test$links,i))
-  tables <- html_table(links)
-  # tables <- tables %>% as_tibble() %>% mutate(candidate= html_nodes(".profile-title") %>%  html_text())
-  # Then we are getting every htmml attributes values into columns and rows
-  # it's a copy/past from stackoverflow, it's works don't ask me how.
-  tables <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
-  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text()))
+  links <- congress %>% mutate(links = paste0(links,i))
+  links <- links %>% mutate(page_num = as.numeric(paste(i)))
 
-  output <- bind_rows(output, tables)
+  output <- bind_rows(output, links)
 }
 
+output <- output %>% #filters out empty donor pages
+  filter(page_num <= pages)
 
+#dividing to test the error:
+    #Error in `mutate()`:
+    #! Problem while computing `tables = map(links, get_tables)`.
+    #Caused by error in `open.connection()`:
+    #  ! HTTP error 524.
 
+output.1 <- output %>% head(822)
+output.1.0 <- output.1 %>% head(411)
+output.1.1 <- output.1 %>% tail(411)
+output.2 <- output %>% tail(822)
+output.2.0 <- output.2 %>% head(411)
+output.2.1 <- output.2 %>% tail(411)
 
-# Get donation tables ####
-
+ ## Get each donation ----
 get_tables = function(links) {
   links <- read_html(links)
-
   links %>%
     html_table()
 }
 
-candidate_pages <- congress %>%
+donors.1 <- output.1.0 %>%
   mutate(tables = map(links, get_tables))
 
-donors <- candidate_pages %>%
+donors.2 <- output.1.1 %>%
+  mutate(tables = map(links, get_tables))
+
+donors.3 <- output.2.0 %>%
+  mutate(tables = map(links, get_tables))
+
+donors.4 <- output.2.1 %>%
+  mutate(tables = map(links, get_tables))
+
+donors <- bind_rows(donors.1, donors.2, donors.3, donors.4)
+
+
+donors <- donors %>%
   unnest(tables)
+
 
 #Final and cleaning the table
 
