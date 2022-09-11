@@ -118,19 +118,18 @@ congress <- congress %>%
 write_csv(congress, "congress.csv")
 
 output <- tibble()
-for (i in 1:88) {
+for (i in 1:1) {
   message(paste0("Page ",i))
-  links <- read_html(paste0(congress$links,i))
+  links <- read_html(paste0(test$links,i))
   tables <- html_table(links)
+ # tables <- tables %>% as_tibble() %>% mutate(candidate= html_nodes(".profile-title") %>%  html_text())
                      # Then we are getting every htmml attributes values into columns and rows
                      # it's a copy/past from stackoverflow, it's works don't ask me how.
-  #output <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
+  tables <- bind_rows(lapply(tables, function(x) data.frame(as.list(x), stringsAsFactors=FALSE)))
+  tables <- tables %>% mutate(candidates = as.character(links %>% html_nodes(".profile-title") %>% html_text()))
 
-  output <- bind_rows(output, tables)
+#  output <- bind_rows(output, tables)
 }
-
-
-
 
 
 
