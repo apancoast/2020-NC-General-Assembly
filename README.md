@@ -1,2 +1,5 @@
-# state_congress
- exploring NC State Congress members and their donors.
+# General Assembly of North Carolina
+Exploring GA of NC members and their donors.
+
+# exploration notes
+How many candidates/GA members donate to each other?
