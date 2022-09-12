@@ -20,8 +20,8 @@ state_house <- fread("D:/RStudio/pride_month/nc_state_house_reps.csv")
 
 #transform and select
 house_terms <-
-  nc_state_house %>% 
-  mutate(across(everything(), gsub, pattern = "North Carolina House of Representatives District ", replacement = "")) %>% 
+  nc_state_house %>%
+  mutate(across(everything(), gsub, pattern = "North Carolina House of Representatives District ", replacement = "")) %>%
   select(house_district,term_start)
 
 #join
@@ -35,7 +35,7 @@ write.csv(merged, "nc_state_house_v2.csv")
 #exported from https://www.ncleg.gov/Members/MemberTable/S
 senators <- fread("D:/RStudio/pride_month/Senate - North Carolina General Assembly.csv")
 
-#scrapping for term from https://ballotpedia.org/North_Carolina_State_Senate 
+#scrapping for term from https://ballotpedia.org/North_Carolina_State_Senate
 link = "https://ballotpedia.org/North_Carolina_State_Senate"
 page = read_html(link)
 
@@ -48,10 +48,10 @@ write.csv(nc_senate_terms, "nc_senate_terms.csv")
 
 #transform
 senate_terms <-
-  nc_senate_terms %>% 
+  nc_senate_terms %>%
   mutate(across(everything(), gsub, pattern = "North Carolina State Senate District ", replacement = ""))
 
-nc_senators <- sentors %>% 
+nc_senators <- sentors %>%
   mutate(senate_district = as.character(factor(senate_district)))
 
 #join
@@ -67,9 +67,8 @@ write.csv(nc_senators.2, "nc_state_senate_v1.csv")
 nc_leg <- bind_rows(nc_senators.2, merged)
 
 #Now I want just Cape Fear. I'm going to use a handy library
-library(stringr)
-cfr_reps <- 
-  nc_leg %>% 
+cfr_reps <-
+  nc_leg %>%
     filter(str_detect(counties_represented, "Brunswick|Columbus|Pender|New Hanover"))
 
 #looks like our longest standing rep has been there since '09, but more started in '17
