@@ -24,7 +24,6 @@ house <- read.csv("house_NCGA.csv") %>%
 #join
 house <- full_join(house, ga_house_terms,by="district")
 
-
 #### STATE SENATORS ####
 #exported from the State's website: https://www.ncleg.gov/Members/MemberTable/S
 senate <- read.csv("senate_NCGA.csv") %>%
@@ -49,4 +48,8 @@ write.csv(ga_senate_terms, "ga_senate_terms.csv")
 senate <- full_join(senate,ga_senate_terms,by="district")
 
 #join senate and house
-nc_ga_2020_elected <- bind_rows(senate, house)
+nc_ga_2020_elected <- bind_rows(senate, house) %>%
+  mutate(counties = gsub("\\s+", "", counties),
+         member = gsub("\\s+", " ", member))
+
+nc_ga_2020_elected %>% write.csv("nc_ga_2020_elected.csv")
