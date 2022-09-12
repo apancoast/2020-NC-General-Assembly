@@ -7,12 +7,11 @@ library(rvest)
 link <- "https://ballotpedia.org/North_Carolina_House_of_Representatives"
 page <- read_html(link)
 
-house_district <- page %>% html_nodes("#officeholder-table td:nth-child(1) a") %>% html_text()
-rep <- page %>% html_nodes("#officeholder-table td:nth-child(2)") %>% html_text()
+district <- page %>% html_nodes("#officeholder-table td:nth-child(1) a") %>% html_text()
 term_start <- page %>% html_nodes("#officeholder-table td:nth-child(4)") %>% html_text()
 
-ga_house <- data.frame(house_district, rep, term_start, stringsAsFactors = FALSE)
-write.csv(ga_house, "ga_house.csv")
+ga_house_terms <- tibble(district, term_start)
+write.csv(ga_house_terms, "ga_house_terms.csv")
 
 #exported from the State's website: https://www.ncleg.gov/Members/MemberTable/H
 house <- read.csv("house_NCGA.csv") %>%
@@ -23,43 +22,31 @@ house <- read.csv("house_NCGA.csv") %>%
   mutate(district = paste("North Carolina House of Representatives District", district))
 
 #join
-house <- full_join(house_reps,house_terms,by="house_district")
+house <- full_join(house, ga_house_terms,by="district")
 
-#save
-write.csv(merged, "nc_state_house_v2.csv")
 
 #### STATE SENATORS ####
-
-#exported from https://www.ncleg.gov/Members/MemberTable/S
-senators <- fread("D:/RStudio/pride_month/Senate - North Carolina General Assembly.csv")
+#exported from the State's website: https://www.ncleg.gov/Members/MemberTable/S
+senate <- read.csv("senate_NCGA.csv") %>%
+  rename(party = Party,
+         district = District,
+         member = Member,
+         counties = Counties.Represented) %>%
+  mutate(district = paste("North Carolina State Senate District", district))
 
 #scrapping for term from https://ballotpedia.org/North_Carolina_State_Senate
-link = "https://ballotpedia.org/North_Carolina_State_Senate"
-page = read_html(link)
+link <- "https://ballotpedia.org/North_Carolina_State_Senate"
+page <- read_html(link)
 
-senate_district = page %>% html_nodes("#officeholder-table td:nth-child(1) a") %>% html_text()
-term_start = page %>% html_nodes("#officeholder-table td:nth-child(4)") %>% html_text()
+district <- page %>% html_nodes("#officeholder-table td:nth-child(1) a") %>% html_text()
+term_start <- page %>% html_nodes("#officeholder-table td:nth-child(4)") %>% html_text()
 
-nc_senate_terms = data.frame(senate_district, term_start, stringsAsFactors = FALSE)
+ga_senate_terms <- tibble(district, term_start)
 
-write.csv(nc_senate_terms, "nc_senate_terms.csv")
-
-#transform
-senate_terms <-
-  nc_senate_terms %>%
-  mutate(across(everything(), gsub, pattern = "North Carolina State Senate District ", replacement = ""))
-
-nc_senators <- sentors %>%
-  mutate(senate_district = as.character(factor(senate_district)))
+write.csv(ga_senate_terms, "ga_senate_terms.csv")
 
 #join
-nc_senators.2 <- full_join(nc_senators,senate_terms,by="senate_district")
+senate <- full_join(senate,ga_senate_terms,by="district")
 
-#save
-write.csv(nc_senators.2, "nc_state_senate_v1.csv")
-
-
-#### CAPE FEAR REGION ####
-
-#Let's look at all of NC's legislative body
-nc_leg <- bind_rows(nc_senators.2, merged)
+#join senate and house
+nc_ga_2020_elected <- bind_rows(senate, house)
