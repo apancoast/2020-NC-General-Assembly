@@ -198,15 +198,3 @@ donors <- donors %>% #run twice apparently??
   unnest(tables)
 
 write.csv(donors, "donors.csv")
-
-#Final and cleaning the table
-
-donors.table <- donors %>%
-  unnest(tables) %>%
-  rename("donation_total" = "Total Donations (Click to sort Ascending)",
-         "donor_name" = "Donor (Click to sort Ascending)",
-         "donor_type" = "Type (Click to sort Descending)") %>%
-  mutate(district = str_trim(district)) %>%
-  select(links, district, donation_total, donor_name, donor_type)
-
-write.csv(donors.table, "donor_table.csv")
