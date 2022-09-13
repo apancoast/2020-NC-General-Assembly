@@ -24,22 +24,45 @@ entity_donors <- donors %>%
   arrange(donor_name)
 
 entity_donors %>%
+  distinct(donor_name) %>%
+  count()
+#result 1667
+
+entity_donors <-
+  entity_donors %>%
+  mutate(donor_name=
+            str_replace_all(
+              donor_name,
+              "10th District Repulican Party|10th Cong Dist Gop|10th Cong Dist Republican Party|10th District Republican Party|10th District Repulican Party",
+              "10th Congressional District Republican Party"),
+          donor_name=
+            str_replace_all(
+              donor_name,
+              "3m Company Politcal Action Committee|3m PAC|3m Politcal Action Committee",
+              "3M Co PAC"),
+          donor_name=
+            str_replace_all(
+              donor_name,
+              "3rd District Republican Party|3rd Cong District Republican",
+              "3rd Congressional District Republican Party")
+         )
+
+
+entity_donors %>%
   mutate(donor_name=
            str_replace_all(
              donor_name,
-             "10th District Repulican Party|10th Cong Dist Gop|10th Cong Dist Republican Party|10th District Republican Party|10th District Repulican Party",
-             "10th Congressional District Republican Party"),
-         donor_name=
-           str_replace_all(
-             donor_name,
-             "3rd District Republican Party|3rd Cong District Republican",
-             "3rd Congressional District Republican Party")
+             "Apartment Association of North Carolina --- Aanc PAC|Apartment Association of North Carolina|Apartment Association of NC PAC|Apartment Association of NC Aanc PAC|Apartment Association of NC|Apartment Assoc of North Carolina PAC|Apartment Assoc of NC PAC|Apartment Assoc of NC|Apartment Ass of NC|Apartment Association of North Carolina PAC Aanc PAC|Apartment Association of North Carolina PAC",
+             "Apartment Association of North Carolina")
          ) %>%
   View()
 
 
 
-entity_donors %>%
-  distinct(donor_name)
+
+
+
+
+
 
 
