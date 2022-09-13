@@ -55,6 +55,9 @@ aanc <-
     mutate(donor_name="Apartment Association of North Carolina PAC")
 ##I don't know how to merge those back in though
 
+entity_donors %>%
+  rows_update(aanc, by = c("member", "district")) %>%
+  View()
 
 View(entity_donors)
 
