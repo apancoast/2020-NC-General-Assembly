@@ -48,17 +48,17 @@ entity_donors <-
          )
 
 
-entity_donors %>%
-  mutate(donor_name=
-           str_replace_all(
-             donor_name,
-             "Apartment Association of North Carolina --- Aanc PAC|Apartment Association of North Carolina|Apartment Association of NC PAC|Apartment Association of NC Aanc PAC|Apartment Association of NC|Apartment Assoc of North Carolina PAC|Apartment Assoc of NC PAC|Apartment Assoc of NC|Apartment Ass of NC|Apartment Association of North Carolina PAC Aanc PAC|Apartment Association of North Carolina PAC",
-             "Apartment Association of North Carolina")
-         ) %>%
-  View()
+#gotta do a lil fix for rows 176:193
+aanc <-
+  entity_donors %>%
+    slice(176:193) %>%
+    mutate(donor_name="Apartment Association of North Carolina PAC")
+##I don't know how to merge those back in though
 
 
+View(entity_donors)
 
+test <- left_join(entity_donors, aanc, by="district")
 
 
 
