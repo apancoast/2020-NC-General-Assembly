@@ -24,6 +24,21 @@ entity_donors <- donors %>%
   arrange(donor_name)
 
 entity_donors %>%
+  mutate(across(
+    everything(),
+    gsub,
+    c("10th Cong Dist Gop|10th Cong Dist Republican Party|10th District Republican Party|10th District Repulican Party"),
+    "10th Congressional District Republican Party")) %>%
+  mutate(across(
+    everything(),
+    gsub,
+    c(" "),
+    " ")) %>%
+  View()
+
+
+
+entity_donors %>%
   distinct(donor_name)
 
 
