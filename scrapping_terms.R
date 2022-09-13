@@ -11,10 +11,10 @@ district <- page %>% html_nodes("#officeholder-table td:nth-child(1) a") %>% htm
 term_start <- page %>% html_nodes("#officeholder-table td:nth-child(4)") %>% html_text()
 
 ga_house_terms <- tibble(district, term_start)
-write.csv(ga_house_terms, "ga_house_terms.csv")
+write.csv(ga_house_terms, "~/RStudio/state_congress/CSVs/ga_house_terms.csv")
 
 #exported from the State's website: https://www.ncleg.gov/Members/MemberTable/H
-house <- read.csv("house_NCGA.csv") %>%
+house <- read.csv("~/RStudio/state_congress/CSVs/house_NCGA.csv") %>%
   rename(party = Party,
          district = District,
          member = Member,
@@ -26,7 +26,7 @@ house <- full_join(house, ga_house_terms,by="district")
 
 #### STATE SENATORS ####
 #exported from the State's website: https://www.ncleg.gov/Members/MemberTable/S
-senate <- read.csv("senate_NCGA.csv") %>%
+senate <- read.csv("~/RStudio/state_congress/CSVs/senate_NCGA.csv") %>%
   rename(party = Party,
          district = District,
          member = Member,
@@ -42,7 +42,7 @@ term_start <- page %>% html_nodes("#officeholder-table td:nth-child(4)") %>% htm
 
 ga_senate_terms <- tibble(district, term_start)
 
-write.csv(ga_senate_terms, "ga_senate_terms.csv")
+write.csv(ga_senate_terms, "~/RStudio/state_congress/CSVs/ga_senate_terms.csv")
 
 #join
 senate <- full_join(senate,ga_senate_terms,by="district")
@@ -52,4 +52,4 @@ nc_ga_2020_elected <- bind_rows(senate, house) %>%
   mutate(counties = gsub("\\s+", "", counties),
          member = gsub("\\s+", " ", member))
 
-nc_ga_2020_elected %>% write.csv("nc_ga_2020_elected.csv")
+nc_ga_2020_elected %>% write.csv("~/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv")
