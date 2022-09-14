@@ -45,7 +45,67 @@ entity_donors <-
             str_replace_all(
               donor_name,
               "3rd District Republican Party|3rd Cong District Republican",
-              "3rd Congressional District Republican Party")
+              "3rd Congressional District Republican Party"),
+          donor_name=
+            str_replace_all(
+              donor_name,
+               "Aanc PAC",
+               "Apartment Association of North Carolina"),
+          donor_name=
+             str_replace_all(
+               donor_name,
+               "Acec NC PAC|Acec of NC PAC|Acec of North Carolina PAC",
+               "American Council of Engineering Companies"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             " \\(Acec/NC\\) PAC| \\(Acec/PAC\\)",
+             ""),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Acpac Automobile Club",
+             "Auto Care Association's PAC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Actbluedonate|Act Blue",
+             "ActBlue"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Adp",
+             "ADP"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Alamance County Republican Party|Alamance County of Republican Party",
+             "Alamance County of Republican Party Building Fund"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Alamance County Republican Women's Club|Alamance Republican Women of NC",
+             "Alamance Republican Women"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             " Exec ",
+             " Executive "),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Alexander Republican Party",
+             "Alexander County Republican Party"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Alleghany County Repbulican Part",
+             "Alleghany County Repbulican Party"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "American Anestesiology of NC PAC|American Anethesiology of NC PAC",
+             "American Anesthesiology of NC PAC")
          )
 
 
@@ -53,20 +113,42 @@ entity_donors <-
 aanc <-
   entity_donors %>%
     slice(176:193) %>%
-    mutate(donor_name="Apartment Association of North Carolina PAC")
-##I don't know how to merge those back in though
+    mutate(donor_name="Apartment Association of North Carolina")
 
-entity_donors %>%
-  rows_update(aanc, by = c("id")) %>%
-  View()
+entity_donors <- entity_donors %>%
+  rows_update(aanc, by = c("id"))
 
-View(entity_donors)
+ahold <-
+  entity_donors %>%
+  slice(34:43) %>%
+  mutate(donor_name="Ahold Delhaize USA, Inc PAC")
 
-test <- left_join(entity_donors, aanc, by="district")
+entity_donors <- entity_donors %>%
+  rows_update(ahold, by = c("id"))
 
+allstate <-
+  entity_donors %>%
+  slice(61:71) %>%
+  mutate(donor_name="Allstate Insurance Comp PAC")
 
+entity_donors <- entity_donors %>%
+  rows_update(allstate, by = c("id"))
 
+amazon <-
+  entity_donors %>%
+  slice(75:78) %>%
+  mutate(donor_name="Amazon")
 
+entity_donors <- entity_donors %>%
+  rows_update(amazon, by = c("id"))
+
+aapac <-
+  entity_donors %>%
+  slice(79:97) %>%
+  mutate(donor_name="American Airlines Inc PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(aapac, by = c("id"))
 
 
 
