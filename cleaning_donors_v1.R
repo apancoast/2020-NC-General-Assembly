@@ -20,7 +20,8 @@ donors <- read.csv("D:/RStudio/state_congress/CSVs/donors.csv") %>%
 #gotta clean entity donors
 entity_donors <- donors %>%
   filter(donor_type == "ENTITY") %>%
-  select(district,member,tot_from_donor,donor_name) %>%
+  mutate(id = 1:6122) %>%
+  select(district,member,tot_from_donor,donor_name, id) %>%
   arrange(donor_name)
 
 entity_donors %>%
@@ -56,7 +57,7 @@ aanc <-
 ##I don't know how to merge those back in though
 
 entity_donors %>%
-  rows_update(aanc, by = c("member", "district")) %>%
+  rows_update(aanc, by = c("id")) %>%
   View()
 
 View(entity_donors)
