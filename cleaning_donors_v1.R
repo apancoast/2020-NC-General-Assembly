@@ -29,6 +29,97 @@ entity_donors %>%
   count()
 #result 1667
 
+# Row Updates ----
+#gotta do a lil fix for rows 176:193
+aanc <-
+  entity_donors %>%
+  slice(176:193) %>%
+  mutate(donor_name="Apartment Association of North Carolina")
+
+entity_donors <- entity_donors %>%
+  rows_update(aanc, by = c("id"))
+
+ahold <-
+  entity_donors %>%
+  slice(34:43) %>%
+  mutate(donor_name="Ahold Delhaize USA, Inc PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(ahold, by = c("id"))
+
+allstate <-
+  entity_donors %>%
+  slice(61:71) %>%
+  mutate(donor_name="Allstate Insurance Comp PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(allstate, by = c("id"))
+
+amazon <-
+  entity_donors %>%
+  slice(75:78) %>%
+  mutate(donor_name="Amazon")
+
+entity_donors <- entity_donors %>%
+  rows_update(amazon, by = c("id"))
+
+aapac <-
+  entity_donors %>%
+  slice(79:97) %>%
+  mutate(donor_name="American Airlines Inc PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(aapac, by = c("id"))
+
+akc <-
+  entity_donors %>%
+  slice(117:124) %>%
+  mutate(donor_name="American Kennel Club PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(akc, by = c("id"))
+
+apta <-
+  entity_donors %>%
+  slice(199:201,4099:4104) %>%
+  mutate(donor_name="American Physical Therapy Association NC PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(apta, by = c("id"))
+
+apcia <-
+  entity_donors %>%
+  slice(129:141, 2111) %>%
+  mutate(donor_name="American Property Casualty Insurance Association PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(apcia, by = c("id"))
+
+anthem <-
+  entity_donors %>%
+  slice(160:175) %>%
+  mutate(donor_name="Anthem Inc PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(anthem, by = c("id"))
+
+astellas <-
+  entity_donors %>%
+  slice(209:229) %>%
+  mutate(donor_name="Astellas US LLC PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(astellas, by = c("id"))
+
+
+entity_donors %>%
+  distinct(donor_name) %>%
+  count()
+#result 1626
+
+
+
+# Row by row ----
 #entity_donors <-
   entity_donors %>%
   mutate(donor_name=
@@ -114,68 +205,29 @@ entity_donors %>%
          donor_name=
            str_replace_all(
              donor_name,
-             "Apta North Carolina PAC \\(Formerly NC Physical Therapy PAC\\)|Apta NC PAC",
-             "American Physical Therapy Association NC PAC")
-         )
+             "Anesthesiologist of the Triad PAC|Anesthessologist of the Triad PA",
+             "Anesthesiologists of the Triad PAC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Anson County NC Republican Party",
+             "Anson County Republican Party"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Aristotle",
+             "Aristotle PAC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Asd",
+             "ASD"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Gop",
+             "GOP")
+         ) %>%  slice(205:220)
 
-  slice(128:130)
-
-# Row Updates ----
-#gotta do a lil fix for rows 176:193
-aanc <-
-  entity_donors %>%
-    slice(176:193) %>%
-    mutate(donor_name="Apartment Association of North Carolina")
-
-entity_donors <- entity_donors %>%
-  rows_update(aanc, by = c("id"))
-
-ahold <-
-  entity_donors %>%
-  slice(34:43) %>%
-  mutate(donor_name="Ahold Delhaize USA, Inc PAC")
-
-entity_donors <- entity_donors %>%
-  rows_update(ahold, by = c("id"))
-
-allstate <-
-  entity_donors %>%
-  slice(61:71) %>%
-  mutate(donor_name="Allstate Insurance Comp PAC")
-
-entity_donors <- entity_donors %>%
-  rows_update(allstate, by = c("id"))
-
-amazon <-
-  entity_donors %>%
-  slice(75:78) %>%
-  mutate(donor_name="Amazon")
-
-entity_donors <- entity_donors %>%
-  rows_update(amazon, by = c("id"))
-
-aapac <-
-  entity_donors %>%
-  slice(79:97) %>%
-  mutate(donor_name="American Airlines Inc PAC")
-
-entity_donors <- entity_donors %>%
-  rows_update(aapac, by = c("id"))
-
-akc <-
-  entity_donors %>%
-  slice(117:124) %>%
-  mutate(donor_name="American Kennel Club PAC")
-
-entity_donors <- entity_donors %>%
-  rows_update(akc, by = c("id"))
-
-apta <-
-  entity_donors %>%
-  slice(4099:4104) %>%
-  mutate(donor_name="American Physical Therapy Association NC PA")
-
-entity_donors <- entity_donors %>%
-  rows_update(apta, by = c("id"))
-
+#don't forget row 310 w AT&T
 
