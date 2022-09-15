@@ -111,11 +111,34 @@ astellas <-
 entity_donors <- entity_donors %>%
   rows_update(astellas, by = c("id"))
 
+att <-
+  entity_donors %>%
+  slice(230:278,310) %>%
+  mutate(donor_name="AT&T NC PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(att, by = c("id"))
+
+iatse <-
+  entity_donors %>%
+  slice(315:317) %>%
+  mutate(donor_name="IATSE 491 Back to One PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(iatse, by = c("id"))
+
+BoA <-
+  entity_donors %>%
+  slice(318:325) %>%
+  mutate(donor_name="Bank of America Corp State and Federal PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(BoA, by = c("id"))
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1626
+#result 1617
 
 
 
@@ -155,7 +178,7 @@ entity_donors %>%
          donor_name=
            str_replace_all(
              donor_name,
-             "Acpac Automobile Club",
+             "Acpac Automobile Club|Automobile Club PAC",
              "Auto Care Association's PAC"),
          donor_name=
            str_replace_all(
@@ -226,8 +249,32 @@ entity_donors %>%
            str_replace_all(
              donor_name,
              "Gop",
-             "GOP")
-         ) %>%  slice(205:220)
+             "GOP"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Atmc",
+             "ATMC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "NC Auto Dealers Assn PAC|Autopac",
+             "NC Auto Dealers Accociation PAC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             " (Iatse 491)",
+             ""),
+      )
+
+
+
 
 #don't forget row 310 w AT&T
 
+entity_donors %>%
+  distinct(donor_name) %>%
+  count()
+#1605
+
+autopac
