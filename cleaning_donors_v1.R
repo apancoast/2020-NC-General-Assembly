@@ -29,7 +29,7 @@ entity_donors %>%
   count()
 #result 1667
 
-entity_donors <-
+#entity_donors <-
   entity_donors %>%
   mutate(donor_name=
             str_replace_all(
@@ -105,10 +105,22 @@ entity_donors <-
            str_replace_all(
              donor_name,
              "American Anestesiology of NC PAC|American Anethesiology of NC PAC",
-             "American Anesthesiology of NC PAC")
+             "American Anesthesiology of NC PAC"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "American Federation of State County and Municipal Employees AFSCME|American Fed of State Cty & Municipal Emp Afscme-People",
+             "American Federation of State County and Municipal Employees (AFSCME-PEOPLE)"),
+         donor_name=
+           str_replace_all(
+             donor_name,
+             "Apta North Carolina PAC \\(Formerly NC Physical Therapy PAC\\)|Apta NC PAC",
+             "American Physical Therapy Association NC PAC")
          )
 
+  slice(128:130)
 
+# Row Updates ----
 #gotta do a lil fix for rows 176:193
 aanc <-
   entity_donors %>%
@@ -150,5 +162,20 @@ aapac <-
 entity_donors <- entity_donors %>%
   rows_update(aapac, by = c("id"))
 
+akc <-
+  entity_donors %>%
+  slice(117:124) %>%
+  mutate(donor_name="American Kennel Club PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(akc, by = c("id"))
+
+apta <-
+  entity_donors %>%
+  slice(4099:4104) %>%
+  mutate(donor_name="American Physical Therapy Association NC PA")
+
+entity_donors <- entity_donors %>%
+  rows_update(apta, by = c("id"))
 
 
