@@ -20,24 +20,65 @@ donors <- read.csv("D:/RStudio/state_congress/CSVs/donors.csv") %>%
 #gotta clean entity donors
 entity_donors <- donors %>%
   filter(donor_type == "ENTITY") %>%
-  mutate(id = 1:6122) %>%
-  select(district,member,tot_from_donor,donor_name, id) %>%
-  arrange(donor_name)
+  select(district,member,tot_from_donor,donor_name) %>%
+  arrange(donor_name) %>%
+  mutate(id = 1:6122)
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
 #result 1667
+row_replace <- function(rows, name) {
+  slice <- entity_donors %>%
+    slice({{rows}}) %>%
+    mutate(donor_name={{name}})
+
+  entity_donors %>%
+    rows_update(slice, by = c("id"))
+}
+
+entity_donors <- row_replace(1:6, "10th Congressional District Republican Party")
+entity_donors <- row_replace(8:12, "3M Co PAC")
+
+
 
 # Row Updates ----
 #gotta do a lil fix for rows 176:193
+third <- entity_donors %>%
+  slice(13:14) %>%
+  mutate(donor_name="3rd Congressional District Republican Party")
+
+entity_donors <- entity_donors %>%
+  rows_update(third, by = c("id"))
+
 aanc <-
   entity_donors %>%
-  slice(176:193) %>%
+  slice(15, 176:193) %>%
   mutate(donor_name="Apartment Association of North Carolina")
 
 entity_donors <- entity_donors %>%
   rows_update(aanc, by = c("id"))
+
+
+donor_name=
+  str_replace_all(
+    donor_name,
+    "Acec NC PAC|Acec of NC PAC|Acec of North Carolina PAC",
+    "American Council of Engineering Companies")
+
+donor_name=
+  str_replace_all(
+    donor_name,
+    " \\(Acec/NC\\) PAC| \\(Acec/PAC\\)",
+    "")
+
+
+
+
+
+
+
+
 
 ahold <-
   entity_donors %>%
@@ -135,47 +176,27 @@ BoA <-
 entity_donors <- entity_donors %>%
   rows_update(BoA, by = c("id"))
 
+bayada <-
+  entity_donors %>%
+  slice(328:341) %>%
+  mutate(donor_name="Bayada Home Health Care Inc NC PAC")
+
+entity_donors <- entity_donors %>%
+  rows_update(bayada, by = c("id"))
+
 entity_donors %>%
   distinct(donor_name) %>%
   count()
 #result 1617
-
+entity_donors %>%
+  distinct(donor_name) %>%
+  View()
 
 
 # Row by row ----
-#entity_donors <-
+entity_donors <-
   entity_donors %>%
   mutate(donor_name=
-            str_replace_all(
-              donor_name,
-              "10th District Repulican Party|10th Cong Dist Gop|10th Cong Dist Republican Party|10th District Republican Party|10th District Repulican Party",
-              "10th Congressional District Republican Party"),
-          donor_name=
-            str_replace_all(
-              donor_name,
-              "3m Company Politcal Action Committee|3m PAC|3m Politcal Action Committee",
-              "3M Co PAC"),
-          donor_name=
-            str_replace_all(
-              donor_name,
-              "3rd District Republican Party|3rd Cong District Republican",
-              "3rd Congressional District Republican Party"),
-          donor_name=
-            str_replace_all(
-              donor_name,
-               "Aanc PAC",
-               "Apartment Association of North Carolina"),
-          donor_name=
-             str_replace_all(
-               donor_name,
-               "Acec NC PAC|Acec of NC PAC|Acec of North Carolina PAC",
-               "American Council of Engineering Companies"),
-         donor_name=
-           str_replace_all(
-             donor_name,
-             " \\(Acec/NC\\) PAC| \\(Acec/PAC\\)",
-             ""),
-         donor_name=
            str_replace_all(
              donor_name,
              "Acpac Automobile Club|Automobile Club PAC",
@@ -214,7 +235,7 @@ entity_donors %>%
            str_replace_all(
              donor_name,
              "Alleghany County Repbulican Part",
-             "Alleghany County Repbulican Party"),
+             "Alleghany County Republican Party"),
          donor_name=
            str_replace_all(
              donor_name,
