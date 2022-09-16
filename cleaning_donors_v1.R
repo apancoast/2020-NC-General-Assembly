@@ -93,14 +93,32 @@ entity_donors <- replace(318:325, "Bank of America Corp State and Federal PAC")
 entity_donors <- replace(328:341, "Bayada Home Health Care Inc NC PAC")
 entity_donors <- replace(342:354, "Bayer US LLC PAC")
 entity_donors <- replace(355:360, "BB&T Corp")
-entity_donors <- replace(c(361:363,382:444,5566:5567), "Blue Cross & Blue Shield of NC Employees PAC")
+entity_donors <- replace(c(361:363,382:445,5566:5567), "Blue Cross & Blue Shield of NC Employees PAC") #Carla D. Cunningham listed BCBS as Blue PAC. I did some hunting to confirm it had the same mailing address as BCBS's PAC, and was not ActBlue, Team Blue, etc.
 entity_donors <- replace(364:365, "Beasley Media Group")
+entity_donors <- replace(367:369, "Committee to Re-elect Becky Carney")
+entity_donors <- replace(c(379:380,1576:1577), "Elect BJ Barnes")
+entity_donors <- replace(447:449, "Elect Bob Steinburg")
+entity_donors <- replace(450, "Bobbie Richardson for NC House")
+entity_donors <- replace(455:457, "Committee to Elect Brenden Jones")
+entity_donors <- replace(458, "Brent Jackson for NC Senate")
+entity_donors <- replace(459, "Brian Farkas for NC House")
+entity_donors <- replace(461:467, "Brian Turner for NC House")
+entity_donors <- replace(c(468:470, 5218), "Brightspring Legacy Fund")
+entity_donors <- replace(471:487, "Bristol-Myers Squibb Company Employee PAC")
+entity_donors <- replace(c(460,491), "Bryan Rauers for County Commissioner")
+entity_donors <- replace(c(492:494,2709:2710,3317:3321,3646:3780,4737:4744,5595), "NC Home Builders Association PAC")
+entity_donors <- replace(c(495, 2163:2172), "Butterfield for Congress")
+entity_donors <- replace(501, "Camden County Republican Party")
+entity_donors <- replace(503, "Camping World")
+
+
+entity_donors <- replace(c( ), " ")
 
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1558
+#result 1515
 
 entity_donors %>%
   distinct(donor_name) %>%
@@ -110,6 +128,7 @@ entity_donors %>%
 
 
 
-#don't forget row 310 w AT&T
+
+
 
 
