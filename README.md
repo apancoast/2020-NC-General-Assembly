@@ -14,11 +14,11 @@ scrapping_terms.R scraps candidates terms and party from ballotpedia.org.
 ##Phase 3
 cleaning_donors.R standardizes names for the scrapped donors. My primarily goals are to make sure each entity is represented only once and with a name that accurately portrays it's funding.
 
-
-
 If their is only one uniform entity name that is generally understandable, i.e. not an acronym, I don't necessarily verify it's PAC or company status.
 
-Verifying PACs on https://cf.ncsbe.gov/CFOrgLkup/ and https://www.fec.gov/data/committees/?committee_type=O&committee_type=V&committee_type=W
+Otherwise, like 90% of the entities, there is a variety of name for each entity. I first try to verify and find registered entity name via https://cf.ncsbe.gov/CFOrgLkup/, then https://www.fec.gov/data/committees/, and last resort I Google it. Another way to verify, is searching the receipts of the receiving candidates on the NCSBE site and using the address provided with the donor to compare to other PAC's registered addresses.
+
+As often as possible, I try to provide the registered entity name in my standardize data. In select cases (Carolinas Association of General Contractors Inc NC PAC, for example), I opt to use a fuller, explanatory name rather than the registered acronym, as it providers more clarity to the reader.
 
 
 

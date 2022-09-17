@@ -112,8 +112,18 @@ entity_donors <- replace(c(495, 2163:2172), "Butterfield for Congress")
 entity_donors <- replace(501, "Camden County Republican Party")
 entity_donors <- replace(503, "Camping World")
 entity_donors <- replace(504:508, "Canal Partners Media LLC")
-entity_donors <- replace(c(512:517,535:564), "Carolina Asphalt Pavement Association PAC")
+entity_donors <- replace(c(512:517,534:564), "Carolina Asphalt Pavement Association PAC")
 entity_donors <- replace(c(531:533,595:630), "Carolinas Association of General Contractors Inc NC PAC")
+entity_donors <- replace(c(565:571,631), "Carolina Auto Recyclers PAC")
+entity_donors <- replace(c(572:573,632:633,1057:1095,1161:1180), "Credit Union PAC of NC")
+entity_donors <- replace(c(574:576,839:841,1383), "Carolina Drive Chapter #1 State Account International Brotherhood of Teamsters")
+entity_donors <- replace(c(582:590,594,658:692), "Carolina Link Telephone Cooperative PAC")
+entity_donors <- replace(c(593,635:657), "Carolinas Ready Mixed Concrete Association NC PAC")
+entity_donors <- replace(693, "Republican Women of Cary & Southwestern Wake")
+entity_donors <- replace(c(695,5568:5580), "The Caterpillar Inc Employee PAC")
+entity_donors <- replace(c(696:729,5991), "Centene Corporation PAC")
+entity_donors <- replace(c(730:737,5581,5583), "Center for International Education Inc PAC")
+
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
@@ -137,16 +147,17 @@ entity_donors <- replace(c( ), " ")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1393
+#result 1340
 
 entity_donors %>%
   distinct(donor_name) %>%
   View()
 
+( / )*100
 
+#119 have one already?
 
-
-
+#Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
 
 
 
