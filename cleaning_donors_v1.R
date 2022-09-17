@@ -81,6 +81,7 @@ entity_donors <- replace(108:116, "American Federation of State County and Munic
 entity_donors <- replace(117:124, "American Kennel Club PAC")
 entity_donors <- replace(c(199:201,4099:4104), "American Physical Therapy Association NC PAC")
 entity_donors <- replace(c(129:141, 2111), "American Property Casualty Insurance Association PAC")
+entity_donors <- replace(c(142,944), "Committee to Elect Amos Quick")
 entity_donors <- replace(144:157, "Anesthesiologists of the Triad PAC")
 entity_donors <- replace(158:159, "Anson County Republican Party")
 entity_donors <- replace(160:175, "Anthem Inc PAC")
@@ -110,18 +111,18 @@ entity_donors <- replace(c(492:494,2709:2710,3317:3321,3646:3780,4737:4744,5595)
 entity_donors <- replace(c(495, 2163:2172), "Butterfield for Congress")
 entity_donors <- replace(501, "Camden County Republican Party")
 entity_donors <- replace(503, "Camping World")
+entity_donors <- replace(504:508, "Canal Partners Media LLC")
+entity_donors <- replace(c(512:517,535:564), "Carolina Asphalt Pavement Association PAC")
+entity_donors <- replace(c(531:533,595:630), "Carolinas Association of General Contractors Inc NC PAC")
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
-
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
-
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
 entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
-
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
-entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:5209,5334:5352), "NC Association of Electric Copperatives Rural Electric Action Program")
-
+entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:5209,5334:5352),
+                         "NC Association of Electric Copperatives Rural Electric Action Program")
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
 entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
