@@ -110,6 +110,24 @@ entity_donors <- replace(c(492:494,2709:2710,3317:3321,3646:3780,4737:4744,5595)
 entity_donors <- replace(c(495, 2163:2172), "Butterfield for Congress")
 entity_donors <- replace(501, "Camden County Republican Party")
 entity_donors <- replace(503, "Camping World")
+entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
+
+entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
+
+entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
+entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
+entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
+entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
+
+entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
+entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:5209,5334:5352), "NC Association of Electric Copperatives Rural Electric Action Program")
+
+entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
+entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
+entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
+entity_donors <- replace(5534:5542, "Syngenta Corp Employee PAC")
+entity_donors <- replace(6003:6051, "Wells Fargo and Company NC Employees Good Government Fund")
+entity_donors <- replace(6059:6076, "Weyerhaeuser Company PAC")
 
 
 entity_donors <- replace(c( ), " ")
@@ -118,7 +136,7 @@ entity_donors <- replace(c( ), " ")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1515
+#result 1393
 
 entity_donors %>%
   distinct(donor_name) %>%
