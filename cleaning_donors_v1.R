@@ -123,9 +123,26 @@ entity_donors <- replace(693, "Republican Women of Cary & Southwestern Wake")
 entity_donors <- replace(c(695,5568:5580), "The Caterpillar Inc Employee PAC")
 entity_donors <- replace(c(696:729,5991), "Centene Corporation PAC")
 entity_donors <- replace(c(730:737,5581,5583), "Center for International Education Inc PAC")
+entity_donors <- replace(738:748, "Central Carolina Radiologists for the Improvement of Medicine")
+entity_donors <- replace(c(749:776, 5582), "Lumen Technologies Inc PAC")
+entity_donors <- replace(777, "Chad Brown for Secretary of State")
+entity_donors <- replace(778, "Committee to Elect Chalmers L. McDougald")
+entity_donors <- replace(780:836, "Charter Communications NC PAC")
+entity_donors <- replace(838, "Chatham County Democratic Party")
+entity_donors <- replace(842, "Chris Humphrey Committee")
+entity_donors <- replace(c(843:849,953), "Committee to Elect Christine Kushner")
+entity_donors <- replace(850:885, "Cigna Corporation Employee PAC")
+entity_donors <- replace(892, "Citizens for Destin Hall")
+entity_donors <- replace(893, "City of Lumberton ABC Board")
+entity_donors <- replace(864:898, "Committee to Elect Wayne Sasser")
+entity_donors <- replace(902, "Coats Area Chamber of Commerce")
+entity_donors <- replace(c(903:930,932), "Coca-Cola Consolidated Inc PAC")
+entity_donors <- replace(931, "Committee to Elect Cody Henson")
+
 
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
+entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
 entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
@@ -141,13 +158,13 @@ entity_donors <- replace(6003:6051, "Wells Fargo and Company NC Employees Good G
 entity_donors <- replace(6059:6076, "Weyerhaeuser Company PAC")
 
 
-entity_donors <- replace(c( ), " ")
+entity_donors <- replace(c(), "")
 
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1340
+#result 1290
 
 entity_donors %>%
   distinct(donor_name) %>%
@@ -155,10 +172,10 @@ entity_donors %>%
 
 ( / )*100
 
-#119 have one already?
+
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
-
+#or club for prosperity pac #901
 
 
 
