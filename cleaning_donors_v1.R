@@ -140,14 +140,23 @@ entity_donors <- replace(c(903:930,932), "Coca-Cola Consolidated Inc PAC")
 entity_donors <- replace(931, "Committee to Elect Cody Henson")
 entity_donors <- replace(c(941, 988:998), "Committee to Elect Republican Women")
 entity_donors <- replace(942, "Committee to Elect Karl Gillespie")
-
-
+entity_donors <- replace(948:949, "Committee to Elect Britt Moore")
+entity_donors <- replace(c(957,1972), "Committee to Elect Garland Pierce")
+entity_donors <- replace(c(958,1984:1987), "Committee to Elect Graig Meyer")
+entity_donors <- replace(959:962, "Committee to Elect Greg Phipps Charlotte City Council District 4")
+entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
+entity_donors <- replace(974:975, "Committee to Elect Larry Potts for NC House")
+entity_donors <- replace(c(978:979,2664), "Committee to Elect Michele Presnell")
 
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
 entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
+entity_donors <- replace(2268, "Friends of Kevin Corbin")
+entity_donors <- replace(2288, "Larry W Potts - NC House of Representatives")
+entity_donors <- replace(2448, "Committee to Elect Mark Brody")
+
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
@@ -167,11 +176,13 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1290
+#result 1281
 
 entity_donors %>%
   group_by(donor_name) %>%
-  summarize(count = n_distinct(donor_name)) %>%
+  mutate(count = n()) %>%
+  select(donor_name, count) %>%
+  distinct(donor_name, .keep_all = TRUE) %>%
   View()
 
 ( / )*100
