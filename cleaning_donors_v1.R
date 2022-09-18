@@ -177,13 +177,19 @@ entity_donors <- replace(c(1256, 1295), "Democracy Engine Inc PAC")
 entity_donors <- replace(1257, "Democratic Women of Sampson County")
 
 
+entity_donors <- replace(c(1582:1594, 1596, 2322), "Eli Lilly and Company PAC")
 
+entity_donors <- replace(c(1599:1600,1618:1663), "Emergeortho PA PAC")
+entity_donors <- replace(1792:1801, "Erie Indemnity Company PAC")
+entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
+
+entity_donors <- replace(2191:2229, "JM Family Enterprince Inc PAC")
 
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
 entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:5209,5334:5352),
-                         "NC Association of Electric Copperatives Rural Electric Action Program")
+                         "NC Association of Electric Cooperatives Rural Electric Action Program")
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
 entity_donors <- replace(5364:5366, "Sarah for NC")
@@ -199,7 +205,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1237
+#result 1209
 
 entity_donors %>%
   group_by(donor_name) %>%
