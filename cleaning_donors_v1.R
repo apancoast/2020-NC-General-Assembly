@@ -67,7 +67,7 @@ entity_donors <- replace(c(16:27,105:107), "American Council of Engineering Comp
 entity_donors <- replace(c(28:29,312:313), "Auto Care Association's PAC")
 entity_donors <- replace(30:31, "ActBlue")
 entity_donors <- replace(32, "ADP as Depository for Taxes")
-entity_donors <- replace(34:43, "Ahold Delhaize USA, Inc PAC")
+entity_donors <- replace(c(34:43,1249:1251), "Ahold Delhaize USA, Inc PAC")
 entity_donors <- replace(45:46, "Alamance County of Republican Party Building Fund")
 entity_donors <- replace(47:48, "Alamance Republican Women")
 entity_donors <- replace(49, "Alexander County Democratic Executive Committee")
@@ -115,7 +115,7 @@ entity_donors <- replace(504:508, "Canal Partners Media LLC")
 entity_donors <- replace(c(512:517,534:564), "Carolina Asphalt Pavement Association PAC")
 entity_donors <- replace(c(531:533,595:630), "Carolinas Association of General Contractors Inc NC PAC")
 entity_donors <- replace(c(565:571,631), "Carolina Auto Recyclers PAC")
-entity_donors <- replace(c(572:573,632:633,1057:1095,1161:1180), "Credit Union PAC of NC")
+entity_donors <- replace(c(572:573,632:633,1057:1095,1154,1161:1180), "Credit Union PAC of NC")
 entity_donors <- replace(c(574:576,839:841,1383), "Carolina Drive Chapter #1 State Account International Brotherhood of Teamsters")
 entity_donors <- replace(c(582:590,594,658:692), "Carolina Link Telephone Cooperative PAC")
 entity_donors <- replace(c(593,635:657), "Carolinas Ready Mixed Concrete Association NC PAC")
@@ -147,7 +147,7 @@ entity_donors <- replace(959:962, "Committee to Elect Greg Phipps Charlotte City
 entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
 entity_donors <- replace(974:975, "Committee to Elect Larry Potts for NC House")
 entity_donors <- replace(c(978:979,2664), "Committee to Elect Michele Presnell")
-
+entity_donors <- replace(c(980,2668,5588), "Committee to Elect Mike Woodard")
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
@@ -156,6 +156,28 @@ entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
 entity_donors <- replace(2268, "Friends of Kevin Corbin")
 entity_donors <- replace(2288, "Larry W Potts - NC House of Representatives")
 entity_donors <- replace(2448, "Committee to Elect Mark Brody")
+entity_donors <- replace(981:982, "Committee to Elect Nancy Hoffman")
+entity_donors <- replace(c(984:986,4969), "Committee to Elect Pat B Hurley")
+entity_donors <- replace(c(1006, 4982:4983), "Paul Lowe for NC Senate")
+entity_donors <- replace(1017:1039, "Communication Workers of America - COPE PCC")
+entity_donors <- replace(c(1041,1245:1246), "Conrad Committee for NC House")
+entity_donors <- replace(1045:1049, "Corning Incorporated Employees PAC")
+entity_donors <- replace(1052:1055, "Craven County Republican Men's Club")
+entity_donors <- replace(1098:1153, "CSX Good Government Fund")
+entity_donors <- replace(c(1155,1158:1159), "Cumberland County Homeowners & Taxpayers Association")
+entity_donors <- replace(1185:1214, "CVS Health PAC")
+entity_donors <- replace(1215:1221, "Cynthia for NC")
+entity_donors <- replace(c(2143,1234), "Jackson for NC")
+entity_donors <- replace(1235:1237, "Dave Craven for NC")
+entity_donors <- replace(1239:1242, "Friends of David Ladley Swanson")
+entity_donors <- replace(c(1244,2455), "Lucas for House Committee")
+entity_donors <- replace(c(1255,1265:1277), "Democratic Women of Mecklenburg County")
+entity_donors <- replace(2606:2607, "Mecklenburg County Medical Society")
+entity_donors <- replace(c(1256, 1295), "Democracy Engine Inc PAC")
+entity_donors <- replace(1257, "Democratic Women of Sampson County")
+
+
+
 
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
@@ -164,6 +186,7 @@ entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:520
                          "NC Association of Electric Copperatives Rural Electric Action Program")
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
+entity_donors <- replace(5364:5366, "Sarah for NC")
 entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
 entity_donors <- replace(5534:5542, "Syngenta Corp Employee PAC")
 entity_donors <- replace(6003:6051, "Wells Fargo and Company NC Employees Good Government Fund")
@@ -176,7 +199,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1281
+#result 1237
 
 entity_donors %>%
   group_by(donor_name) %>%
