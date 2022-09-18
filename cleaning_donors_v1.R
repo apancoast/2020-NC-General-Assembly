@@ -138,6 +138,9 @@ entity_donors <- replace(864:898, "Committee to Elect Wayne Sasser")
 entity_donors <- replace(902, "Coats Area Chamber of Commerce")
 entity_donors <- replace(c(903:930,932), "Coca-Cola Consolidated Inc PAC")
 entity_donors <- replace(931, "Committee to Elect Cody Henson")
+entity_donors <- replace(c(941, 988:998), "Committee to Elect Republican Women")
+entity_donors <- replace(942, "Committee to Elect Karl Gillespie")
+
 
 
 entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
@@ -167,7 +170,8 @@ entity_donors %>%
 #result 1290
 
 entity_donors %>%
-  distinct(donor_name) %>%
+  group_by(donor_name) %>%
+  summarize(count = n_distinct(donor_name)) %>%
   View()
 
 ( / )*100
