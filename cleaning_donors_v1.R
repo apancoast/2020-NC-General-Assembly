@@ -175,6 +175,15 @@ entity_donors <- replace(c(1255,1265:1277), "Democratic Women of Mecklenburg Cou
 entity_donors <- replace(2606:2607, "Mecklenburg County Medical Society")
 entity_donors <- replace(c(1256, 1295), "Democracy Engine Inc PAC")
 entity_donors <- replace(1257, "Democratic Women of Sampson County")
+entity_donors <- replace(1261:1264, "Democratic Women of Guilford County")
+entity_donors <- replace(1278:1279, "North Carolina Democractic Women")
+entity_donors <- replace(1282:1284, "Democratic Women of Pitt County")
+entity_donors <- replace(c(1285:1292,5871), "Democratic Women of Wake County")
+entity_donors <- replace(c(1296,5590), "The Denis P Bilodeau Campaign Committee")
+entity_donors <- replace(c(1298:1303, 5308), "Riddell for NC House 64")
+entity_donors <- replace(1367, "Don Mial Committee to Elect")
+entity_donors <- replace(1368, "Donna Lake for NC")
+entity_donors <- replace(1369:1370, "Donna White for NC House")
 
 
 entity_donors <- replace(c(1582:1594, 1596, 2322), "Eli Lilly and Company PAC")
@@ -205,13 +214,14 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1209
+#result 1204
 
 entity_donors %>%
   group_by(donor_name) %>%
   mutate(count = n()) %>%
-  select(donor_name, count) %>%
+  select(donor_name, count, id) %>%
   distinct(donor_name, .keep_all = TRUE) %>%
+  #filter(str_detect(donor_name, "^D")) %>%
   View()
 
 ( / )*100
