@@ -171,11 +171,11 @@ entity_donors <- replace(c(2143,1234), "Jackson for NC")
 entity_donors <- replace(1235:1237, "Dave Craven for NC")
 entity_donors <- replace(1239:1242, "Friends of David Ladley Swanson")
 entity_donors <- replace(c(1244,2455), "Lucas for House Committee")
-entity_donors <- replace(c(1255,1265:1277), "Democratic Women of Mecklenburg County")
+entity_donors <- replace(c(1255,1265:1277,1471), "Democratic Women of Mecklenburg County")
 entity_donors <- replace(2606:2607, "Mecklenburg County Medical Society")
 entity_donors <- replace(c(1256, 1295), "Democracy Engine Inc PAC")
 entity_donors <- replace(1257, "Democratic Women of Sampson County")
-entity_donors <- replace(1261:1264, "Democratic Women of Guilford County")
+entity_donors <- replace(c(1261:1264,1470), "Democratic Women of Guilford County")
 entity_donors <- replace(1278:1279, "North Carolina Democractic Women")
 entity_donors <- replace(1282:1284, "Democratic Women of Pitt County")
 entity_donors <- replace(c(1285:1292,5871), "Democratic Women of Wake County")
@@ -184,6 +184,11 @@ entity_donors <- replace(c(1298:1303, 5308), "Riddell for NC House 64")
 entity_donors <- replace(1367, "Don Mial Committee to Elect")
 entity_donors <- replace(1368, "Donna Lake for NC")
 entity_donors <- replace(1369:1370, "Donna White for NC House")
+entity_donors <- replace(1373, "Committee to Elect Donny Lambeth")
+entity_donors <- replace(c(1376:1378,5183), "Rabon for Senate")
+entity_donors <- replace(1382, "Drive - Democrat, Republican, Independent Voter Education")
+entity_donors <- replace(1385:1468, "Duke Energy Corp PAC")
+entity_donors <- replace(c(1469,1682:1685), "Employees of Dupont PAC - Dupont De Nemours Inc")
 
 
 entity_donors <- replace(c(1582:1594, 1596, 2322), "Eli Lilly and Company PAC")
@@ -214,14 +219,14 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1204
+#result 1197
 
 entity_donors %>%
   group_by(donor_name) %>%
   mutate(count = n()) %>%
   select(donor_name, count, id) %>%
   distinct(donor_name, .keep_all = TRUE) %>%
-  #filter(str_detect(donor_name, "^D")) %>%
+  filter(str_detect(donor_name, "^E")) %>%
   View()
 
 ( / )*100
