@@ -189,7 +189,9 @@ entity_donors <- replace(c(1376:1378,5183), "Rabon for Senate")
 entity_donors <- replace(1382, "Drive - Democrat, Republican, Independent Voter Education")
 entity_donors <- replace(1385:1468, "Duke Energy Corp PAC")
 entity_donors <- replace(c(1469,1682:1685), "Employees of Dupont PAC - Dupont De Nemours Inc")
-
+entity_donors <- replace(1503:1505, "East Carolina Republican Women")
+entity_donors <- replace(1574, "East Carolina Emergency Physicians PAC")
+entity_donors <- replace(c(1601:1617,3406:3411), "NC College of Emergency Physicians PAC")
 
 entity_donors <- replace(c(1582:1594, 1596, 2322), "Eli Lilly and Company PAC")
 
@@ -219,14 +221,14 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1197
+#result 1195
 
 entity_donors %>%
   group_by(donor_name) %>%
   mutate(count = n()) %>%
   select(donor_name, count, id) %>%
   distinct(donor_name, .keep_all = TRUE) %>%
-  filter(str_detect(donor_name, "^E")) %>%
+  #filter(str_detect(donor_name, "^E")) %>%
   View()
 
 ( / )*100
