@@ -148,7 +148,6 @@ entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
 entity_donors <- replace(974:975, "Committee to Elect Larry Potts for NC House")
 entity_donors <- replace(c(978:979,2664), "Committee to Elect Michele Presnell")
 entity_donors <- replace(c(980,2668,5588), "Committee to Elect Mike Woodard")
-entity_donors <- replace(c(1678:1681,1686:1737,5405,5523:5524), "Employee's PAC")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
@@ -191,11 +190,18 @@ entity_donors <- replace(1385:1468, "Duke Energy Corp PAC")
 entity_donors <- replace(c(1469,1682:1685), "Employees of Dupont PAC - Dupont De Nemours Inc")
 entity_donors <- replace(1503:1505, "East Carolina Republican Women")
 entity_donors <- replace(1574, "East Carolina Emergency Physicians PAC")
-entity_donors <- replace(c(1601:1617,3406:3411), "NC College of Emergency Physicians PAC")
-
 entity_donors <- replace(c(1582:1594, 1596, 2322), "Eli Lilly and Company PAC")
-
+entity_donors <- replace(c(1595, 2179), "Elmore for NC House")
+entity_donors <- replace(c(1597,1677:1681, 1686:1738,5388:5405,5523:5524),
+                         "State Employees Association of NC PAC")
 entity_donors <- replace(c(1599:1600,1618:1663), "Emergeortho PA PAC")
+entity_donors <- replace(c(1601:1617,3406:3411), "NC College of Emergency Physicians PAC")
+entity_donors <- replace(1664:1676, "Emily's List")
+entity_donors <- replace(1755:1790, "Enterprise Holdings Inc PAC")
+
+
+
+
 entity_donors <- replace(1792:1801, "Erie Indemnity Company PAC")
 entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
 
@@ -221,7 +227,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1195
+#result 1184
 
 entity_donors %>%
   group_by(donor_name) %>%
