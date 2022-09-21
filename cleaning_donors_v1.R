@@ -141,7 +141,7 @@ entity_donors <- replace(931, "Committee to Elect Cody Henson")
 entity_donors <- replace(c(941, 988:998), "Committee to Elect Republican Women")
 entity_donors <- replace(942, "Committee to Elect Karl Gillespie")
 entity_donors <- replace(948:949, "Committee to Elect Britt Moore")
-entity_donors <- replace(c(957,1972), "Committee to Elect Garland Pierce")
+entity_donors <- replace(c(957,1927), "Committee to Elect Garland Pierce")
 entity_donors <- replace(c(958,1984:1987), "Committee to Elect Graig Meyer")
 entity_donors <- replace(959:962, "Committee to Elect Greg Phipps Charlotte City Council District 4")
 entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
@@ -209,7 +209,14 @@ entity_donors <- replace(c(1838, 2669), "Fitch for Senate Committee") #Reports f
 entity_donors <- replace(1839:1845, "Flippable Federal PAC")
 entity_donors <- replace(1846:1849, "McKissick for NC State")
 entity_donors <- replace(1850, "First National Bank Corporation PAC")
-
+entity_donors <- replace(1857, "Committee to Elect Frank Iler")
+entity_donors <- replace(c(1866:1867,1873:1903), "Friends of Forestry PAC")
+entity_donors <- replace(c(1908,2010:2025), "Friends to Elect Dr. Greg Murphy to Congress")
+entity_donors <- replace(1909:1922, "Future Now Fund PAC")
+entity_donors <- replace(1924:1926, "Gale Adcock for NC House")
+entity_donors <- replace(1928:1929, "Gem Country Republican Women's Club")
+entity_donors <- replace(1930:1942, "General Motors Company PAC")
+entity_donors <- replace(1983, "Graham County Republican Party")
 
 
 entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
@@ -236,7 +243,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1152
+#result 1141
 
 entity_donors %>%
   group_by(donor_name) %>%
