@@ -217,6 +217,14 @@ entity_donors <- replace(1924:1926, "Gale Adcock for NC House")
 entity_donors <- replace(1928:1929, "Gem Country Republican Women's Club")
 entity_donors <- replace(1930:1942, "General Motors Company PAC")
 entity_donors <- replace(1983, "Graham County Republican Party")
+entity_donors <- replace(1991:1993, "Greater Greensboro Repubilican Women's Club")
+entity_donors <- replace(1994:2008, "Greensboro Orthopaedics PAC")#This PAC closed in 2019 and I don't see it in the candidates receipts, so I am confused.
+entity_donors <- replace(2026:2028, "Greg Newman for District Attorney")
+entity_donors <- replace(2029:2030, "Committee to Elect Grey Mills")
+entity_donors <- replace(2035, "Committee to Elect Harper Peterson")
+entity_donors <- replace(2037, "Harry Brown for NC Senate")
+entity_donors <- replace(2039:2059, "Health Network Solutions PAC")
+entity_donors <- replace(c(2061:2062,2064), "Henderson County Republican Men's Club")
 
 
 entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
@@ -243,7 +251,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1141
+#result 1132
 
 entity_donors %>%
   group_by(donor_name) %>%
