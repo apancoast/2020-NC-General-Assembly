@@ -198,11 +198,20 @@ entity_donors <- replace(c(1599:1600,1618:1663), "Emergeortho PA PAC")
 entity_donors <- replace(c(1601:1617,3406:3411), "NC College of Emergency Physicians PAC")
 entity_donors <- replace(1664:1676, "Emily's List")
 entity_donors <- replace(1755:1790, "Enterprise Holdings Inc PAC")
-
-
-
-
+entity_donors <- replace(1791, "Committee to Elect Erica McAdoo")
 entity_donors <- replace(1792:1801, "Erie Indemnity Company PAC")
+entity_donors <- replace(c(1814,2819:2823, 4433,4615,4618), "NC Academy of Family Physicians")
+entity_donors <- replace(c(1817:1818, 1820:1829), "FedEx Corporation PAC")
+entity_donors <- replace(c(1819,2463,2469:2601, 2605), "McGuireWoods Federal PAC Fund")
+entity_donors <- replace(c(1831:1832, 1834:1836), "First Citizens Bank")
+entity_donors <- replace(1837, "First Horizon Bank") #Reported as interest earned, not donation
+entity_donors <- replace(c(1838, 2669), "Fitch for Senate Committee") #Reports from candidates don't match, so our government is ruined
+entity_donors <- replace(1839:1845, "Flippable Federal PAC")
+entity_donors <- replace(1846:1849, "McKissick for NC State")
+entity_donors <- replace(1850, "First National Bank Corporation PAC")
+
+
+
 entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
 
 entity_donors <- replace(2191:2229, "JM Family Enterprince Inc PAC")
@@ -227,7 +236,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1184
+#result 1152
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -243,6 +252,6 @@ entity_donors %>%
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
 #or club for prosperity pac #901
-
+#Best guess for Fd & Ma of NC Inc PAC at 1816 is Funeral Directors and Morticians Association of North Carolina, Inc but address is "wiseman mortuary"
 
 
