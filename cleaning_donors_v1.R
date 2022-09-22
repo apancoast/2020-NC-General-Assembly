@@ -225,12 +225,19 @@ entity_donors <- replace(2035, "Committee to Elect Harper Peterson")
 entity_donors <- replace(2037, "Harry Brown for NC Senate")
 entity_donors <- replace(2039:2059, "Health Network Solutions PAC")
 entity_donors <- replace(c(2061:2062,2064), "Henderson County Republican Men's Club")
+entity_donors <- replace(2063, "Henderson County Republican Women's Club")
+entity_donors <- replace(2072, "Committee to Re-Elect Howard J. Hunter III Representative")
+entity_donors <- replace(c(2073:2074, 5286:5299), "Hudson for Congress")
+entity_donors <- replace(2075, "Hugh Blackwell for NC House")
+entity_donors <- replace(c(2078:2109, 2140), "Independent Insurance Agents of NC")
+entity_donors <- replace(c(2112:2113, 2138), "Integrated Strategy Group")
 
 
-entity_donors <- replace(2078:2109, "Independent Insurance Agents of NC")
+
+
+
 
 entity_donors <- replace(2191:2229, "JM Family Enterprince Inc PAC")
-
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
@@ -251,7 +258,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1132
+#result 1128
 
 entity_donors %>%
   group_by(donor_name) %>%
