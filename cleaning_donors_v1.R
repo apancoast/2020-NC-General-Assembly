@@ -166,7 +166,7 @@ entity_donors <- replace(1098:1153, "CSX Good Government Fund")
 entity_donors <- replace(c(1155,1158:1159), "Cumberland County Homeowners & Taxpayers Association")
 entity_donors <- replace(1185:1214, "CVS Health PAC")
 entity_donors <- replace(1215:1221, "Cynthia for NC")
-entity_donors <- replace(c(2143,1234), "Jackson for NC")
+entity_donors <- replace(c(2143,1234,2144), "Jackson for NC")
 entity_donors <- replace(1235:1237, "Dave Craven for NC")
 entity_donors <- replace(1239:1242, "Friends of David Ladley Swanson")
 entity_donors <- replace(c(1244,2455), "Lucas for House Committee")
@@ -231,13 +231,22 @@ entity_donors <- replace(c(2073:2074, 5286:5299), "Hudson for Congress")
 entity_donors <- replace(2075, "Hugh Blackwell for NC House")
 entity_donors <- replace(c(2078:2109, 2140), "Independent Insurance Agents of NC")
 entity_donors <- replace(c(2112:2113, 2138), "Integrated Strategy Group")
+entity_donors <- replace(2146:2147, "Citizens to Elect James D. Gailliard")
+entity_donors <- replace(2149:2159, "Jason Saine Committee")
+entity_donors <- replace(2160:2161, "Chaudhuri for New NC")
+entity_donors <- replace(c(2162, 5851:5852), "Vote Jay Wagner")
+entity_donors <- replace(2173:2178, "Jeff Jackson for NC Senate")
+entity_donors <- replace(2180:2181, "Committee to Elect McNeely for NC House")
+entity_donors <- replace(2182, "Jen Mangrum for NC")
+entity_donors <- replace(c(2183,5614), "Jerry W. Tillman for NC Senate")
+entity_donors <- replace(2184:2185, "Jim Burgin for Senate Committee")
+entity_donors <- replace(2186, "Committee to Elect Jim Duke")
+entity_donors <- replace(2187:2189, "Jim Perry Committee")
+entity_donors <- replace(2191:2229, "JM Family Enterprises Inc PAC")
+entity_donors <- replace(2231:2233, "John A. Fraley for NC House")
 
 
 
-
-
-
-entity_donors <- replace(2191:2229, "JM Family Enterprince Inc PAC")
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
 entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
@@ -258,7 +267,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1128
+#result 1122
 
 entity_donors %>%
   group_by(donor_name) %>%
