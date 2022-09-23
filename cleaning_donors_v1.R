@@ -2,8 +2,10 @@ library(tidyverse)
 
 # Exploring Donors ----
 #let's get that table real purrrty
-nc_ga_2020_elected <- read.csv("D:/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv")
-donors <- read.csv("D:/RStudio/state_congress/CSVs/donors.csv") %>%
+nc_ga_2020_elected <- read.csv("C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv")
+#laptop C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv
+#desktop D:/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv
+donors <- read.csv("C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/donors.csv") %>%
   select( -matches("X")) %>%
   rename(tot_to_candidate = donations_total,
          tot_from_donor = Total.Donations..Click.to.sort.Ascending.,
@@ -244,7 +246,7 @@ entity_donors <- replace(2186, "Committee to Elect Jim Duke")
 entity_donors <- replace(2187:2189, "Jim Perry Committee")
 entity_donors <- replace(2191:2229, "JM Family Enterprises Inc PAC")
 entity_donors <- replace(2231:2233, "John A. Fraley for NC House")
-
+entity_donors <- replace(2234:2238, "John Bell Committee")
 
 
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
