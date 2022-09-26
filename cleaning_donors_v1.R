@@ -259,6 +259,15 @@ entity_donors <- replace(c(2298,2300), "LGBTQ Democrats of NC")
 entity_donors <- replace(c(2299,2301), "LGBTQ Democrats of Wake County")
 entity_donors <- replace(2302:2309, "Liberty Mutual Insurance Company PAC")
 entity_donors <- replace(2310:2321, "Lillian's List PAC")
+entity_donors <- replace(c(2327, 4515:4528), "Nelson Mullins Riley & Scarborough LLP PAC")
+entity_donors <- replace(2328:2333, "LKQ Corporation Employee Good Government Fund")
+entity_donors <- replace(c(2336:2342, 2343:2360, 2365:2377), "Lowe's Comp Inc. PAC")
+entity_donors <- replace(2361:2364, "Lower Cape Fear Republican Women")
+entity_donors <- replace(2378:2379, "Lumberton Emergency Medical Associates")
+entity_donors <- replace(2383:2407, "Mag Mutual NC PAC")
+entity_donors <- replace(2409, "Making a Difference in Service to Our Nation PAC")
+entity_donors <- replace(c(2411, 3854:3855, 4745:4759), "NC Manufactured & Modular Homebuilders Association PAC")
+entity_donors <- replace(2413:2440, "Marathon Petroleum Corp Employee PAC")
 
 
 
@@ -282,7 +291,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1097
+#result 1066
 
 entity_donors %>%
   group_by(donor_name) %>%
