@@ -2,10 +2,10 @@ library(tidyverse)
 
 # Exploring Donors ----
 #let's get that table real purrrty
-nc_ga_2020_elected <- read.csv("C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv")
+nc_ga_2020_elected <- read.csv("D:/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv")
 #laptop C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv
 #desktop D:/RStudio/state_congress/CSVs/nc_ga_2020_elected.csv
-donors <- read.csv("C:/Users/Ashley/Documents/RStudio/state_congress/CSVs/donors.csv") %>%
+donors <- read.csv("D:/RStudio/state_congress/CSVs/donors.csv") %>%
   select( -matches("X")) %>%
   rename(tot_to_candidate = donations_total,
          tot_from_donor = Total.Donations..Click.to.sort.Ascending.,
@@ -147,14 +147,14 @@ entity_donors <- replace(c(957,1927), "Committee to Elect Garland Pierce")
 entity_donors <- replace(c(958,1984:1987), "Committee to Elect Graig Meyer")
 entity_donors <- replace(959:962, "Committee to Elect Greg Phipps Charlotte City Council District 4")
 entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
-entity_donors <- replace(974:975, "Committee to Elect Larry Potts for NC House")
+entity_donors <- replace(c(974:975,2288), "Committee to Elect Larry Potts for NC House")
 entity_donors <- replace(c(978:979,2664), "Committee to Elect Michele Presnell")
 entity_donors <- replace(c(980,2668,5588), "Committee to Elect Mike Woodard")
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
 entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
-entity_donors <- replace(2268, "Friends of Kevin Corbin")
+entity_donors <- replace(c(973, 2268), "Friends of Kevin Corbin")
 entity_donors <- replace(2288, "Larry W Potts - NC House of Representatives")
 entity_donors <- replace(2448, "Committee to Elect Mark Brody")
 entity_donors <- replace(981:982, "Committee to Elect Nancy Hoffman")
@@ -247,6 +247,19 @@ entity_donors <- replace(2187:2189, "Jim Perry Committee")
 entity_donors <- replace(2191:2229, "JM Family Enterprises Inc PAC")
 entity_donors <- replace(2231:2233, "John A. Fraley for NC House")
 entity_donors <- replace(2234:2238, "John Bell Committee")
+entity_donors <- replace(c(2248:2250, 2252:2253), "Johnston County Republican Women")
+entity_donors <- replace(c(2251, 2254), "Johnston County Republican Party")
+entity_donors <- replace(2255:2256, "Dollar for House")
+entity_donors <- replace(2257:2266, "Julia C. Howard for House")
+entity_donors <- replace(2267, "Elect Justin Davis")
+entity_donors <- replace(2270:2285, "Koch Industries Inc PAC")
+entity_donors <- replace(2289:2294, "Larry C. Strickland Campaign Committtee")
+entity_donors <- replace(2297, "Lee County Republican Party")
+entity_donors <- replace(c(2298,2300), "LGBTQ Democrats of NC")
+entity_donors <- replace(c(2299,2301), "LGBTQ Democrats of Wake County")
+entity_donors <- replace(2302:2309, "Liberty Mutual Insurance Company PAC")
+entity_donors <- replace(2310:2321, "Lillian's List PAC")
+
 
 
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
@@ -269,7 +282,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1122
+#result 1097
 
 entity_donors %>%
   group_by(donor_name) %>%
