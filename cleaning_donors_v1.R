@@ -277,14 +277,35 @@ entity_donors <- replace(c(2468, 5217), "McDowell County Republican Party")
 entity_donors <- replace(c(2602:2603, 4971:4979), "McHenry for Congress")
 entity_donors <- replace(2604, "McInnis for State Senate")
 entity_donors <- replace(2608:2649, "Merck & Co., Inc Employees PAC")
-
-
-
+entity_donors <- replace(2660, "Garrett for NC")
+entity_donors <- replace(2265, "Mid-Atlantic Emergency Medical Associates PAC")
+entity_donors <- replace(2667, "Mike Causey Campaign")
+entity_donors <- replace(2673:2676, "Committee to Elect Mitchell Setzer")
+entity_donors <- replace(c(2677, 2706:2707), "Mohammed for North Carolina")
+entity_donors <- replace(2690:2704, "Motorola Solutions Inc PAC")
+entity_donors <- replace(2705, "MS Consultants Inc PAC")
+entity_donors <- replace(c(2708, 2825:2829, 4617), "NC Academy of Physician Assistants")
 entity_donors <- replace(c(2711,4063:4093,4773:4774), "NC Outdoor Advertising Association PAC")
-entity_donors <- replace(c(2741,2746:2747,2813,4563:4597), "National Federation of Independent Business NC PAC")
+entity_donors <- replace(c(2712, 4147:4154, 4780), "NC Poultry Federation PAC")
+entity_donors <- replace(c(2713:2714,4375:4407), "NC Veterinary Medical Association PAC")
+entity_donors <- replace(c(2716, 3344:3345), "NC Chapter National Association of Social Workers PAC")
+entity_donors <- replace(c(2717, 2741:2759,2812:2814,4563:4597), "National Federation of Independent Business NC PAC")
+
+
+
+
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
-entity_donors <- replace(c(2811,2904:3027,3077,3094:3096,3506,4620,4622,5199:5209,5334:5352),
-                         "NC Association of Electric Cooperatives Rural Electric Action Program")
+entity_donors <-
+  replace(c(2811,
+            2904:3027,
+            3077,
+            3094:3096,
+            3506,
+            4620,
+            4622,
+            5199:5209,
+            5334:5352),
+          "NC Association of Electric Cooperatives Rural Electric Action Program")
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
 entity_donors <- replace(5364:5366, "Sarah for NC")
@@ -300,7 +321,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1054
+#result 1023
 
 entity_donors %>%
   group_by(donor_name) %>%
