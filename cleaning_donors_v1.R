@@ -268,6 +268,15 @@ entity_donors <- replace(2383:2407, "Mag Mutual NC PAC")
 entity_donors <- replace(2409, "Making a Difference in Service to Our Nation PAC")
 entity_donors <- replace(c(2411, 3854:3855, 4745:4759), "NC Manufactured & Modular Homebuilders Association PAC")
 entity_donors <- replace(2413:2440, "Marathon Petroleum Corp Employee PAC")
+entity_donors <- replace(2441:2447, "Marcia Morey Campaign")
+entity_donors <- replace(2449, "Friends of Mark Robinson")
+entity_donors <- replace(c(2450:2454, 2650:2659), "Metrolina Area Radiologists for Quality in Medicine PAC")
+entity_donors <- replace(2456:2461, "Harrison for House")
+entity_donors <- replace(2464:2467, "McCready for Congress")
+entity_donors <- replace(c(2468, 5217), "McDowell County Republican Party")
+entity_donors <- replace(c(2602:2603, 4971:4979), "McHenry for Congress")
+entity_donors <- replace(2604, "McInnis for State Senate")
+entity_donors <- replace(2608:2649, "Merck & Co., Inc Employees PAC")
 
 
 
@@ -291,7 +300,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 1066
+#result 1054
 
 entity_donors %>%
   group_by(donor_name) %>%
