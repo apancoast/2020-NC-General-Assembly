@@ -294,7 +294,6 @@ entity_donors <- replace(2718, "Friends of Natasha Marcus")
 entity_donors <-
   replace(c(2719, 2808:2810, 3030, 3078:3084,3098:3104, 4624),
           "NC Association of Insurance and Financial Advisors PAC")
-
 entity_donors <- replace(c(2760, 4897:4902), "NRA Political Victory Fund")
 entity_donors <- replace(2761:2807, "Nationwide Carolina Political Participation Fund")
 entity_donors <-
@@ -302,7 +301,7 @@ entity_donors <-
             2904:3027,
             3076:3077,
             3094:3096,
-            3506,
+            3506:3508,
             4620,
             4622,
             5199:5209,
@@ -326,6 +325,19 @@ entity_donors <- replace(c(3346:3377,4674:4675), "NC Chiropractic Association In
 entity_donors <- replace(3378:3405, "NC Clean Energy Business Alliance PAC")
 entity_donors <- replace(c(3415:3420,4729,4676:4721), "NC Democratic Party")
 entity_donors <- replace(c(3421:3494,4730:4732), "NC Dental Society PAC")
+entity_donors <- replace(c(3496:3505), "NC Dermatology Association PAC")
+entity_donors <- replace(c(3509:3578,4734), "NC Farm Bureau Federation Inc PAC")
+entity_donors <- replace(c(3586,4782:4787), "North Carolina Republican House Caucus")
+entity_donors <- replace(c(3587:3644), "NC Health Care Facilities Association PAC")
+entity_donors <- replace(c(3781:3834), "NC Hospital Association PAC")
+
+#Need to review 495 for comparision with caucus and building and plain committee
+
+entity_donors <- replace(c(3851:3852), "NC Land Title Association PAC")
+entity_donors <- replace(c(3856:3893,4760:4763),
+                         "NC Medical Society State and Political Education & Action Committee")
+entity_donors <- replace(c(3895:3961,4277:4278,4764), "NC Merchants PAC Inc")
+
 
 
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
@@ -343,7 +355,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 937
+#result 914
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -353,7 +365,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(484/937)*100
+(500/914)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
