@@ -315,9 +315,17 @@ entity_donors <- replace(c(2856, 3969:4032, 4767:4768, 4434:4436), "NC American 
 entity_donors <- replace(c(2857:2858, 3073,3090, 3114:3116, 4437:4455, 4619), "NC Association of Private Investigators PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
 entity_donors <- replace(c(2872:2874, 3074,3091:3092,3105), "NC Association Long Term Care Facilities")
-entity_donors <- replace(c(2875:2903, 3093, 3412:3414, 4408), "NC Associates of CPAs PAC")
+entity_donors <- replace(c(2875:2903, 3093, 3412:3414,3322,4408), "NC Associates of CPAs PAC")
 entity_donors <- replace(c(3028:3029,3097,4621,4623), "NC Association of Health Underwriters PAC")
 entity_donors <- replace(c(3031:3072, 3075, 3085:3089, 3106:3113, 3966,4625:4626), "NC Association of Nurse Anesthetists")
+entity_donors <- replace(c(3212:3225,4640), "NC Bail Agents Association PAC")
+entity_donors <- replace(c(3226:3235,4669:4671), "NC Bankers Association PAC")
+entity_donors <- replace(3236:3314, "NC Beer & Wine Wholesalers Association PAC")
+entity_donors <- replace(c(3323:3343,4672:4673), "NC Chamber PAC")
+entity_donors <- replace(c(3346:3377,4674:4675), "NC Chiropractic Association Inc PAC")
+entity_donors <- replace(3378:3405, "NC Clean Energy Business Alliance PAC")
+entity_donors <- replace(c(3415:3420,4729,4676:4721), "NC Democratic Party")
+entity_donors <- replace(c(3421:3494,4730:4732), "NC Dental Society PAC")
 
 
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
@@ -335,7 +343,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 963
+#result 937
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -345,7 +353,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-( / )*100
+(484/937)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
