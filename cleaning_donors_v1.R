@@ -180,7 +180,7 @@ entity_donors <- replace(c(1261:1264,1470), "Democratic Women of Guilford County
 entity_donors <- replace(1278:1279, "North Carolina Democractic Women")
 entity_donors <- replace(1282:1284, "Democratic Women of Pitt County")
 entity_donors <- replace(c(1285:1292,5871), "Democratic Women of Wake County")
-entity_donors <- replace(c(1296,5590), "The Denis P Bilodeau Campaign Committee")
+entity_donors <- replace(c(1296,5590), "The Denis P. Bilodeau Campaign Committee")
 entity_donors <- replace(c(1298:1303, 5308), "Riddell for NC House 64")
 entity_donors <- replace(1367, "Don Mial Committee to Elect")
 entity_donors <- replace(1368, "Donna Lake for NC")
@@ -278,7 +278,7 @@ entity_donors <- replace(c(2602:2603, 4971:4979), "McHenry for Congress")
 entity_donors <- replace(2604, "McInnis for State Senate")
 entity_donors <- replace(2608:2649, "Merck & Co., Inc Employees PAC")
 entity_donors <- replace(2660, "Garrett for NC")
-entity_donors <- replace(2265, "Mid-Atlantic Emergency Medical Associates PAC")
+entity_donors <- replace(2665, "Mid-Atlantic Emergency Medical Associates PAC")
 entity_donors <- replace(2667, "Mike Causey Campaign")
 entity_donors <- replace(2673:2676, "Committee to Elect Mitchell Setzer")
 entity_donors <- replace(c(2677, 2706:2707), "Mohammed for North Carolina")
@@ -330,13 +330,16 @@ entity_donors <- replace(c(3509:3578,4734), "NC Farm Bureau Federation Inc PAC")
 entity_donors <- replace(c(3586,4782:4787), "North Carolina Republican House Caucus")
 entity_donors <- replace(c(3587:3644), "NC Health Care Facilities Association PAC")
 entity_donors <- replace(c(3781:3834), "NC Hospital Association PAC")
-
-#Need to review 495 for comparision with caucus and building and plain committee
-
 entity_donors <- replace(c(3851:3852), "NC Land Title Association PAC")
 entity_donors <- replace(c(3856:3893,4760:4763),
                          "NC Medical Society State and Political Education & Action Committee")
 entity_donors <- replace(c(3895:3961,4277:4278,4764), "NC Merchants PAC Inc")
+entity_donors <- replace(3962:3963, "NC National Organization for Women")
+entity_donors <- replace(3965, "NC Nurses PAC")
+entity_donors <- replace(c(3964,3967,4765:4766), "NC Nurse Midwives PAC")
+entity_donors <- replace(c(3031:3072,3075,3085:3089,3106:3113,3966,3968,4625:4626), "NC Association of Nurse Anesthetists PAC")
+entity_donors <- replace(c(), "NC OBGYN")
+
 
 
 
@@ -355,7 +358,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 914
+#result 907
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -365,7 +368,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(500/914)*100
+(500/913)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
