@@ -313,7 +313,7 @@ entity_donors <- replace(2855, "NC Ambulatory Surgical PAC")
 entity_donors <- replace(c(2856, 3969:4032, 4767:4768, 4434:4436), "NC American Nurses Association PAC")
 entity_donors <- replace(c(2857:2858, 3073,3090, 3114:3116, 4437:4455, 4619), "NC Association of Private Investigators PAC")
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
-entity_donors <- replace(c(2872:2874, 3074,3091:3092,3105), "NC Association Long Term Care Facilities")
+entity_donors <- replace(c(2872:2874, 3074,3091:3092,3105, 4457), "NC Association Long Term Care Facilities")
 entity_donors <- replace(c(2875:2903, 3093, 3412:3414,3322,4408), "NC Associates of CPAs PAC")
 entity_donors <- replace(c(3028:3029,3097,4621,4623), "NC Association of Health Underwriters PAC")
 entity_donors <- replace(c(3031:3072, 3075, 3085:3089, 3106:3113, 3966,4625:4626), "NC Association of Nurse Anesthetists")
@@ -333,13 +333,30 @@ entity_donors <- replace(c(3781:3834), "NC Hospital Association PAC")
 entity_donors <- replace(c(3851:3852), "NC Land Title Association PAC")
 entity_donors <- replace(c(3856:3893,4760:4763),
                          "NC Medical Society State and Political Education & Action Committee")
-entity_donors <- replace(c(3895:3961,4277:4278,4764), "NC Merchants PAC Inc")
+entity_donors <- replace(c(3895:3961,4277:4278,4459,4764), "NC Merchants PAC Inc")
 entity_donors <- replace(3962:3963, "NC National Organization for Women")
 entity_donors <- replace(3965, "NC Nurses PAC")
 entity_donors <- replace(c(3964,3967,4765:4766), "NC Nurse Midwives PAC")
 entity_donors <- replace(c(3031:3072,3075,3085:3089,3106:3113,3966,3968,4625:4626), "NC Association of Nurse Anesthetists PAC")
-entity_donors <- replace(c(), "NC OBGYN")
-
+entity_donors <- replace(c(4033:4034, 4908:4909), "NC Ob-Gyn Society PAC")
+entity_donors <- replace(c(4035, 4319:4372, 4769, 4842, 4844:4852), "NC State Optometric Society PAC")
+entity_donors <- replace(c(4036:4062, 4771:4772), "NC Orthopaedic Association PAC")
+entity_donors <- replace(c(4094:4098, 5016:5035), "NC Petroleum & Convenience Marketers PAC")
+entity_donors <- replace(c(4105:4146, 4776:4779), "NC Pork Council PAC")
+entity_donors <- replace(4155:4256, "NC Association of Realtors PAC")
+entity_donors <- replace(c(4257, 4788:4817, 4456), "North Carolina Republican Party")
+entity_donors <- replace(c(4258:4276, 4820), "NC Restaurant & Lodging Association PAC")
+entity_donors <- replace(4279:4287, "NC Senate Democratic Caucus")
+entity_donors <- replace(c(4298:4310, 4838:4841), "NC Society of Eye Physicians & Surgeons PAC")
+entity_donors <- replace(c(4311, 4509:4510), "NC Society of Surveyors PAC")
+entity_donors <- replace(c(4373:4374, 4853), "NC Trucking Association Committee for Good Government")
+entity_donors <- replace(c(4409:4432, 4634), "NC Association of Educators")
+entity_donors <- replace(c(4460:4461, 4781), "NC Propane Gas Association")
+entity_donors <- replace(4462:4508, "NC Association of Student Financial Aid Administrators PAC")
+entity_donors <- replace(4511, "NC Utility Contractors Association PAC")
+entity_donors <- replace(c(2713:2714, 4375:4407, 4512), "NC Veterinary Medical Association")
+entity_donors <- replace(c(4513:4514), "NEA Fund for Children and Public Education PAC")
+entity_donors <- replace(4534:4562, "Nexsen Pruet NC PAC")
 
 
 
@@ -358,7 +375,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 907
+#result 856
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -368,7 +385,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(500/913)*100
+(522/830)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
