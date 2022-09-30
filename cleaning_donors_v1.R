@@ -340,7 +340,7 @@ entity_donors <- replace(3965, "NC Nurses PAC")
 entity_donors <- replace(c(3964,3967,4765:4766), "NC Nurse Midwives PAC")
 entity_donors <- replace(c(3031:3072,3075,3085:3089,3106:3113,3966,3968,4625:4626), "NC Association of Nurse Anesthetists PAC")
 entity_donors <- replace(c(4033:4034, 4908:4909), "NC Ob-Gyn Society PAC")
-entity_donors <- replace(c(4035, 4319:4372, 4769, 4842, 4844:4852), "NC State Optometric Society PAC")
+entity_donors <- replace(c(4035, 4319:4372, 4769, 4842:4852), "NC State Optometric Society PAC")
 entity_donors <- replace(c(4036:4062, 4771:4772), "NC Orthopaedic Association PAC")
 entity_donors <- replace(c(4094:4098, 5016:5035), "NC Petroleum & Convenience Marketers PAC")
 entity_donors <- replace(c(4105:4146, 4776:4779), "NC Pork Council PAC")
@@ -362,7 +362,11 @@ entity_donors <- replace(c(4600, 4875:4887), "Novartis Corp PAC")
 entity_donors <- replace(4601:4614, "Norfolk Southern Corporation Good Government Fund")
 entity_donors <- replace(4722:4728, "NC House Democratic Caucus")
 entity_donors <- replace(c(4775, 5453:5513), "Southern States Police Benevolent Association PAC")
-entity_donors <- replace(c(4818:4819), "NC Senate Republican Caucus")
+entity_donors <- replace(4821:4837, "NC Senate Majority Fund")
+entity_donors <- replace(4818:4819, "NC Senate Republican Caucus")
+entity_donors <- replace(4854:4855, "NC Vending Association PAC")
+entity_donors <- replace(4889:4892, "Now or Never NC")
+entity_donors <- replace(4893:4896, "Nurse Practitioner PAC")
 
 
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
@@ -380,7 +384,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 842
+#result 840
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -390,7 +394,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(531/842)*100
+(537/840)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
