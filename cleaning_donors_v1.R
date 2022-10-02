@@ -353,7 +353,7 @@ entity_donors <- replace(c(4311, 4509:4510), "NC Society of Surveyors PAC")
 entity_donors <- replace(c(4373:4374, 4853), "NC Trucking Association Committee for Good Government")
 entity_donors <- replace(c(4409:4432, 4634), "NC Association of Educators")
 entity_donors <- replace(c(4460:4461, 4781), "NC Propane Gas Association")
-entity_donors <- replace(4462:4508, "NC Association of Student Financial Aid Administrators PAC")
+entity_donors <- replace(c(4462:4508, 4903), "NC Association of Student Financial Aid Administrators PAC")
 entity_donors <- replace(4511, "NC Utility Contractors Association PAC")
 entity_donors <- replace(c(2713:2714, 4375:4407, 4512), "NC Veterinary Medical Association")
 entity_donors <- replace(c(4513:4514), "NEA Fund for Children and Public Education PAC")
@@ -367,6 +367,24 @@ entity_donors <- replace(4818:4819, "NC Senate Republican Caucus")
 entity_donors <- replace(4854:4855, "NC Vending Association PAC")
 entity_donors <- replace(4889:4892, "Now or Never NC")
 entity_donors <- replace(4893:4896, "Nurse Practitioner PAC")
+entity_donors <- replace(4904:4905, "Nucor Corporation PAC")
+entity_donors <- replace(4916:4949, "Orthocarolina PA Federal PAC")
+entity_donors <- replace(4950:4952, "Our States Matter PAC")
+entity_donors <- replace(4961:4968, "Partners for Educational Freedom PAC")
+entity_donors <- replace(4980, "Kinsey Campaign Committee")
+entity_donors <- replace(4985, "Penny Rich for County Commissioner")
+entity_donors <- replace(5036:5054, "Pfizer Inc PAC")
+entity_donors <- replace(5056, "Philip E. Berger Committee")
+entity_donors <- replace(5064:5082, "Piedmont Traid Anesthesia PA Federal PAC")
+entity_donors <- replace(5083:5086, "Pill PAC (Formally NC Association of Pharmacists)")
+entity_donors <- replace(5087, "Pinehurst Resort")
+entity_donors <- replace(5091:5115, "Planned Parenthood Action PAC NC")
+entity_donors <- replace(5116:5117, "Polk County Republican Party")
+entity_donors <- replace(5118, "Precinct 206 Democrats - Mecklenburg County")
+entity_donors <- replace(5119:5120, "Piedmont Radiologists Interested in Medical Excellence")
+entity_donors <- replace(5123:5164, "Providence Anesthesiology Associates PA Federal PAC")
+entity_donors <- replace(c(1314:1366,5165:5167), "Dominion Energy Inc PAC")
+
 
 
 entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
@@ -377,14 +395,12 @@ entity_donors <- replace(5534:5542, "Syngenta Corp Employee PAC")
 entity_donors <- replace(6003:6051, "Wells Fargo and Company NC Employees Good Government Fund")
 entity_donors <- replace(6059:6076, "Weyerhaeuser Company PAC")
 
-
 entity_donors <- replace(c(), "")
-
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 840
+#result 820
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -394,7 +410,7 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(537/840)*100
+(576/820)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
