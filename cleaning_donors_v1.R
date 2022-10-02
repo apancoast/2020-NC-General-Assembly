@@ -61,6 +61,7 @@ entity_donors <- entity_donors %>%
 
 
 # Row Updates ----
+## 1:1000 ----
 entity_donors <- replace(1:6, "10th Congressional District Republican Party")
 entity_donors <- replace(8:12, "3M Co PAC")
 entity_donors <- replace(13:14, "3rd Congressional District Republican Party")
@@ -150,6 +151,8 @@ entity_donors <- replace(963:968, "Committee to Elect Holly Jones")
 entity_donors <- replace(c(974:975,2288), "Committee to Elect Larry Potts for NC House")
 entity_donors <- replace(c(978:979,2664), "Committee to Elect Michele Presnell")
 entity_donors <- replace(c(980,2668,5588), "Committee to Elect Mike Woodard")
+
+## 1001:2000 ----
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
@@ -221,6 +224,8 @@ entity_donors <- replace(1930:1942, "General Motors Company PAC")
 entity_donors <- replace(1983, "Graham County Republican Party")
 entity_donors <- replace(1991:1993, "Greater Greensboro Repubilican Women's Club")
 entity_donors <- replace(1994:2008, "Greensboro Orthopaedics PAC")#This PAC closed in 2019 and I don't see it in the candidates receipts, so I am confused.
+
+## 2009:3000 ----
 entity_donors <- replace(2026:2028, "Greg Newman for District Attorney")
 entity_donors <- replace(2029:2030, "Committee to Elect Grey Mills")
 entity_donors <- replace(2035, "Committee to Elect Harper Peterson")
@@ -316,6 +321,8 @@ entity_donors <- replace(c(2857:2858, 3073,3090, 3114:3116, 4437:4455, 4619, 462
 entity_donors <- replace(2859:2871, "NC Assisted Living Association PAC")
 entity_donors <- replace(c(2872:2874, 3074,3091:3092,3105, 4457), "NC Association Long Term Care Facilities")
 entity_donors <- replace(c(2875:2903, 3093, 3412:3414,3322,4408), "NC Associates of CPAs PAC")
+
+## 3028:4000 ----
 entity_donors <- replace(c(3028:3029,3097,4621,4623), "NC Association of Health Underwriters PAC")
 entity_donors <- replace(c(3031:3072, 3075, 3085:3089, 3106:3113, 3966,4625:4626), "NC Association of Nurse Anesthetists")
 entity_donors <- replace(c(3212:3225,4640), "NC Bail Agents Association PAC")
@@ -339,6 +346,8 @@ entity_donors <- replace(3962:3963, "NC National Organization for Women")
 entity_donors <- replace(3965, "NC Nurses PAC")
 entity_donors <- replace(c(3964,3967,4765:4766), "NC Nurse Midwives PAC")
 entity_donors <- replace(c(3031:3072,3075,3085:3089,3106:3113,3966,3968,4625:4626), "NC Association of Nurse Anesthetists PAC")
+
+## 4033:5000 ----
 entity_donors <- replace(c(4033:4034, 4908:4909), "NC Ob-Gyn Society PAC")
 entity_donors <- replace(c(4035, 4319:4372, 4769, 4842:4852), "NC State Optometric Society PAC")
 entity_donors <- replace(c(4036:4062, 4771:4772), "NC Orthopaedic Association PAC")
@@ -373,6 +382,9 @@ entity_donors <- replace(4950:4952, "Our States Matter PAC")
 entity_donors <- replace(4961:4968, "Partners for Educational Freedom PAC")
 entity_donors <- replace(4980, "Kinsey Campaign Committee")
 entity_donors <- replace(4985, "Penny Rich for County Commissioner")
+entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
+
+## 5036:6122 ----
 entity_donors <- replace(5036:5054, "Pfizer Inc PAC")
 entity_donors <- replace(5056, "Philip E. Berger Committee")
 entity_donors <- replace(5064:5082, "Piedmont Traid Anesthesia PA Federal PAC")
@@ -384,10 +396,18 @@ entity_donors <- replace(5118, "Precinct 206 Democrats - Mecklenburg County")
 entity_donors <- replace(5119:5120, "Piedmont Radiologists Interested in Medical Excellence")
 entity_donors <- replace(5123:5164, "Providence Anesthesiology Associates PA Federal PAC")
 entity_donors <- replace(c(1314:1366,5165:5167), "Dominion Energy Inc PAC")
+entity_donors <- replace(5168:5181, "Publix Supermarkets Inc Association PAC")
+entity_donors <- replace(5193, "Ralph Hise for NC Senate")
+entity_donors <- replace(5194:5196, "Ramey Kemp & Associates PAC")
+entity_donors <- replace(5198, "Committee to Re-Elect Gary Banks Sheriff")
+entity_donors <- replace(5210:5213, "Regional Anesthesia PLLC PAC")
+entity_donors <- replace(5215, "Citizens to Elect	Rena Turner")
+entity_donors <- replace(c(5254:5284, 5285), "Reynolds American Inc PAC")
+entity_donors <- replace(5301, "Gunn for NC Senate")
+entity_donors <- replace(c(5304, 5306:5307), "Ricky Buchanan for Sheriff")
+entity_donors <- replace(5309:5313, "Right 2 Vape PAC")
 
 
-
-entity_donors <- replace(4989:5014, "PepsiCo, Inc Concerned Citizens Fund")
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
 entity_donors <- replace(5364:5366, "Sarah for NC")
 entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
@@ -400,7 +420,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 820
+#result 814
 
 entity_donors %>%
   group_by(donor_name) %>%
