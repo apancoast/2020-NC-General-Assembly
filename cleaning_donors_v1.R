@@ -420,6 +420,33 @@ entity_donors <- replace(5444, "Southeast Republican Men's Association")
 entity_donors <- replace(5445:5448, "Southeastern Radiology Organization PAC")
 entity_donors <- replace(5449, "Southern Crop Production Association PAC")
 entity_donors <- replace(5516:5520, "SRH Media Inc")
+entity_donors <- replace(c(5527,5532), "Stokes County Republican Ladies")
+entity_donors <- replace(5528:5529, "Stokes County Republican Men's Club")
+entity_donors <- replace(5543:5548, "Tar Heel Prosperity PAC")
+entity_donors <- replace(5549:5552, "Taylor Morrison, Building Strong Business PAC")
+entity_donors <- replace(5553:5559, "Ted Budd for Congress")
+entity_donors <- replace(5561, "Terry Bradley Campaign Committee")
+entity_donors <- replace(5597, "The UPS Store")
+entity_donors <- replace(c(5598:5611, 6083:6086), "The Williams Companies Inc PAC")
+entity_donors <- replace(5612:5613, "Committee to Elect Thomas S. Hester NC Senator")
+entity_donors <- replace(5615:5641, "Friends of Tim Moore")
+entity_donors <- replace(5647:5652, "Triad Radiologists Interested in Advancing Disease Detection PAC")
+entity_donors <- replace(5653:5657, "Triangle Apartment Association PAC")
+entity_donors <- replace(c(5659:5703,5707), "Truist NC PAC")
+entity_donors <- replace(5704:5705, "Truliant Federal Credit Union PAC")
+entity_donors <- replace(c(5709, 5711:5721), "UCB PAC")
+entity_donors <- replace(c(5722,5776:5808), "University Development Coalition")
+entity_donors <- replace(c(5723:5726, 5771:5775), "Universal Leaf Tobacco Company Inc PAC")
+entity_donors <- replace(c(5727,5730:5770), "UnitedHealth Group Inc PAC")
+entity_donors <- replace(c(5809:5810, 5813:5826), "US Acute Care Solutions PAC")
+entity_donors <- replace(5827:5828, "USPS")
+entity_donors <- replace(5829:5830, "Foushee for NC")
+entity_donors <- replace(5835:5843, "Verizon Good Government Club of NC")
+entity_donors <- replace(5844:5847, "Verla Insko for State House")
+entity_donors <- replace(5848, "Committee to Elect Vickie Sawyer")
+entity_donors <- replace(5853:5854, "Vote Tripling PAC")
+entity_donors <- replace(5861:5869, "Vulcan Material Company PAC")
+entity_donors <- replace(5872:5901, "Wake Emergency Physicians PA PAC")
 
 
 entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
@@ -434,7 +461,7 @@ entity_donors <- replace(c(), "")
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 803
+#result 749
 
 entity_donors %>%
   group_by(donor_name) %>%
@@ -444,11 +471,11 @@ entity_donors %>%
   #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(637/803)*100
+(694/762)*100
 
 
 #Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
 #or club for prosperity pac #901
 #Best guess for Fd & Ma of NC Inc PAC at 1816 is Funeral Directors and Morticians Association of North Carolina, Inc but address is "wiseman mortuary"
 #what the heck is the Seanlem PAC (5406)
-
+#Vantiv (5833) and Vantive Commerce/funds (5834)
