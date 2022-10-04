@@ -519,8 +519,8 @@ write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
 
 
 #Prep SHP Files
-senate_shape <- st_read("D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3_Shapefile/Senate Consensus Nonpartisan Map v3.shp", stringsAsFactors=FALSE) %>%
+senate_shape <- st_read("D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3.shp", stringsAsFactors=FALSE) %>%
   rename(senate_district = DISTRICT)
 
-house_shape <- st_read("D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25_Shapefile/HB 1020 H Red Comm CSBK-25.shp", stringsAsFactors=FALSE) %>%
+house_shape <- st_read("D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25.shp", stringsAsFactors=FALSE) %>%
   rename(house_district = DISTRICT)
