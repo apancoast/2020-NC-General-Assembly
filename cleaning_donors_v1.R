@@ -57,8 +57,9 @@ entity_donors <- entity_donors %>%
            "Asd",
            "ASD")
   )
-
-
+entity_donors %>%
+  slice(108:116) %>%
+  View()
 
 # Row Updates ----
 ## 1:1000 ----
@@ -154,6 +155,7 @@ entity_donors <- replace(c(980,2668,5588), "Committee to Elect Mike Woodard")
 
 ## 1001:2000 ----
 entity_donors <- replace(c(1472:1502, 1506, 1569), "East Carolina Anesthesia PAC")
+entity_donors <- replace(c(1816), "Funeral Directors and Morticians Association of North Carolina")#Best guess for Fd & Ma of NC Inc PAC at 1816 is Funeral Directors and Morticians Association of North Carolina, Inc but address is "wiseman mortuary." However, I think it's reasonable for a mortuary address to be the registered address for a mortician's PAC
 entity_donors <- replace(c(1904,2462), "Friends of Matt Hughes")
 entity_donors <- replace(c(1944:1981, 5591), "GlaxoSmithKline LLC PAC")
 entity_donors <- replace(c(2116:2135,2136:2137), "International Paper PAC")
@@ -345,7 +347,7 @@ entity_donors <- replace(c(3895:3961,4277:4278,4459,4764), "NC Merchants PAC Inc
 entity_donors <- replace(3962:3963, "NC National Organization for Women")
 entity_donors <- replace(3965, "NC Nurses PAC")
 entity_donors <- replace(c(3964,3967,4765:4766), "NC Nurse Midwives PAC")
-entity_donors <- replace(c(3031:3072,3075,3085:3089,3106:3113,3966,3968,4625:4626), "NC Association of Nurse Anesthetists PAC")
+
 
 ## 4033:5000 ----
 entity_donors <- replace(c(4033:4034, 4908:4909), "NC Ob-Gyn Society PAC")
@@ -402,6 +404,7 @@ entity_donors <- replace(5194:5196, "Ramey Kemp & Associates PAC")
 entity_donors <- replace(5198, "Committee to Re-Elect Gary Banks Sheriff")
 entity_donors <- replace(5210:5213, "Regional Anesthesia PLLC PAC")
 entity_donors <- replace(5215, "Citizens to Elect	Rena Turner")
+entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
 entity_donors <- replace(c(5254:5284, 5285), "Reynolds American Inc PAC")
 entity_donors <- replace(5301, "Gunn for NC Senate")
 entity_donors <- replace(c(5304, 5306:5307), "Ricky Buchanan for Sheriff")
@@ -412,16 +415,19 @@ entity_donors <- replace(5330, "Ronnie for NC")
 entity_donors <- replace(c(5353,5357), "Sam's Club")
 entity_donors <- replace(5354, "Sampson County Republican Party")
 entity_donors <- replace(5358:5363, "Sandhills Anesthesiologists PAC")
+entity_donors <- replace(5364:5366, "Sarah for NC")
 entity_donors <- replace(5377:5386, "Scott Cooper for Congress")
 entity_donors <- replace(5407, "Service Employees International Union")
 entity_donors <- replace(5411, "Singh Development PAC")
 entity_donors <- replace(5417, "Smart TD PAC")
+entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
 entity_donors <- replace(5444, "Southeast Republican Men's Association")
 entity_donors <- replace(5445:5448, "Southeastern Radiology Organization PAC")
 entity_donors <- replace(5449, "Southern Crop Production Association PAC")
 entity_donors <- replace(5516:5520, "SRH Media Inc")
 entity_donors <- replace(c(5527,5532), "Stokes County Republican Ladies")
 entity_donors <- replace(5528:5529, "Stokes County Republican Men's Club")
+entity_donors <- replace(5534:5542, "Syngenta Corp Employee PAC")
 entity_donors <- replace(5543:5548, "Tar Heel Prosperity PAC")
 entity_donors <- replace(5549:5552, "Taylor Morrison, Building Strong Business PAC")
 entity_donors <- replace(5553:5559, "Ted Budd for Congress")
@@ -447,35 +453,52 @@ entity_donors <- replace(5848, "Committee to Elect Vickie Sawyer")
 entity_donors <- replace(5853:5854, "Vote Tripling PAC")
 entity_donors <- replace(5861:5869, "Vulcan Material Company PAC")
 entity_donors <- replace(5872:5901, "Wake Emergency Physicians PA PAC")
-
-
-entity_donors <- replace(5219:5253, "Resident Lenders of NC PAC")
-entity_donors <- replace(5364:5366, "Sarah for NC")
-entity_donors <- replace(5433:5442, "Smithfield Foods Inc PAC")
-entity_donors <- replace(5534:5542, "Syngenta Corp Employee PAC")
+entity_donors <- replace(c(5903:5925, 5931:5932), "Wal-Mart Stores Inc PAC for Responsible Government") #Also an assortment of individual wal-mart stores
+entity_donors <- replace(5933:5969, "Ward and Smith PAC")
+entity_donors <- replace(5970, "Warren Daniel for NC State")
+entity_donors <- replace(5971:5982, "Waste Management Employees Better Government Fund")
+entity_donors <- replace(5983:5984, "Watauga County Republican Women's Club")
+entity_donors <- replace(5990, "WBTV - Gray Television")
 entity_donors <- replace(6003:6051, "Wells Fargo and Company NC Employees Good Government Fund")
+entity_donors <- replace(6053:6058, "Western Radiologists and Surgeons PAC")
 entity_donors <- replace(6059:6076, "Weyerhaeuser Company PAC")
+entity_donors <- replace(6078, "Whit Davis for Judge")
+entity_donors <- replace(6079:6082, "Wiley Nickel for NC")
+entity_donors <- replace(6087:6094, "Wilmington Anesthesiology PAC")
+entity_donors <- replace(6095:6102, "Windstream Corp PAC")
+entity_donors <- replace(6109:6113, "Woody White for New Hanover County Commissioner")
+entity_donors <- replace(6119, "WSP USA Inc PAC")
 
-entity_donors <- replace(c(), "")
+## Misc for cleaning donors ----
 
 entity_donors %>%
   distinct(donor_name) %>%
   count()
-#result 749
+#result 729
 
 entity_donors %>%
   group_by(donor_name) %>%
   mutate(count = n()) %>%
   select(donor_name, count, id) %>%
   distinct(donor_name, .keep_all = TRUE) %>%
-  #filter(str_detect(donor_name, "^E")) %>%
   View()
 
-(694/762)*100
+# Could not find or verify existence of:
+# Carolina PAC (ids 591:592) at PO BOX 368 YADKINVILLE	NC, 27055
+# Seanlem PAC (id 5406)
+# Vantiv (5833) and Vantive Commerce/funds (5834)
 
 
-#Absolutely cannot find the #110 Carolina PAC at PO BOX 368 YADKINVILLE	NC	27055
-#or club for prosperity pac #901
-#Best guess for Fd & Ma of NC Inc PAC at 1816 is Funeral Directors and Morticians Association of North Carolina, Inc but address is "wiseman mortuary"
-#what the heck is the Seanlem PAC (5406)
-#Vantiv (5833) and Vantive Commerce/funds (5834)
+# Clean Amounts
+# Amount discrepancies were introduced by candidate's campaigns recording receipts without standardized names
+entity_donors <- entity_donors %>%
+  group_by(district, member, donor_name) %>%
+  summarise(tot_from_donor = sum(tot_from_donor))
+
+donors <-
+  donors %>%
+  distinct(member, party, tot_to_candidate, counties, term_start)
+
+entity_donors <- full_join(entity_donors, donors, "member")
+
+write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
