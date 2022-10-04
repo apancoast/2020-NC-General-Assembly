@@ -1,4 +1,5 @@
 library(tidyverse)
+library(sf)
 
 # Exploring Donors ----
 #let's get that table real purrrty
@@ -489,7 +490,7 @@ entity_donors %>%
 # Vantiv (5833) and Vantive Commerce/funds (5834)
 
 
-# Clean Amounts
+# Clean Amounts ----
 # Amount discrepancies were introduced by candidate's campaigns recording receipts without standardized names
 entity_donors <- entity_donors %>%
   group_by(district, member, donor_name) %>%
@@ -501,4 +502,25 @@ donors <-
 
 entity_donors <- full_join(entity_donors, donors, "member")
 
+entity_donors <- entity_donors %>%
+  mutate(district = gsub("North Carolina House of Representatives", "Representative", district),
+         district = gsub("North Carolina State Senate", "Senator", district)) %>%
+  rename(seat_sought = district)
+
+entity_donors %>%
+  filter(grepl("Representative", seat_sought)) %>%
+  mutate(house_district = str_sub(seat_sought, 25, 27)
+         ) %>%
+  View()
+
+
 write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
+
+
+
+#Prep SHP Files
+senate_shape <- st_read("D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3_Shapefile/Senate Consensus Nonpartisan Map v3.shp", stringsAsFactors=FALSE) %>%
+  rename(senate_district = DISTRICT)
+
+house_shape <- st_read("D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25_Shapefile/HB 1020 H Red Comm CSBK-25.shp", stringsAsFactors=FALSE) %>%
+  rename(house_district = DISTRICT)
