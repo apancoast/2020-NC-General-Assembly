@@ -38,7 +38,6 @@ replace <- function(rows, name) {
 
    entity_donors %>%
     rows_update(slice, by = c("id"))
-
 }
 
 entity_donors <- entity_donors %>%
@@ -58,9 +57,6 @@ entity_donors <- entity_donors %>%
            "Asd",
            "ASD")
   )
-entity_donors %>%
-  slice(108:116) %>%
-  View()
 
 # Row Updates ----
 ## 1:1000 ----
@@ -498,29 +494,59 @@ entity_donors <- entity_donors %>%
 
 donors <-
   donors %>%
-  distinct(member, party, tot_to_candidate, counties, term_start)
+  distinct(district, member, party, tot_to_candidate, counties, term_start)
 
-entity_donors <- full_join(entity_donors, donors, "member")
-
-entity_donors <- entity_donors %>%
-  mutate(district = gsub("North Carolina House of Representatives", "Representative", district),
-         district = gsub("North Carolina State Senate", "Senator", district)) %>%
-  rename(seat_sought = district)
-
-entity_donors %>%
-  filter(grepl("Representative", seat_sought)) %>%
-  mutate(house_district = str_sub(seat_sought, 25, 27)
-         ) %>%
-  View()
-
+entity_donors <- full_join(entity_donors, donors, "member") %>%
+  select(district.x, member, donor_name, tot_from_donor, tot_to_candidate, party, counties, term_start) %>%
+  rename(seat_won = district.x)
 
 write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
+
+#Prep for SHP Files ----
+entity_donors <- read.csv("D:/RStudio/state_congress/CSVs/entity_donors.csv") %>%
+  select(2:9)
+
+reps <- entity_donors %>%
+  filter(grepl("Representative", seat_sought)) %>%
+  mutate(house_district = str_sub(seat_sought, 25, 27)
+  ) %>%
+  select(member, house_district)
+
+senate <- entity_donors %>%
+  filter(grepl("Senator", seat_sought)) %>%
+  mutate(senate_district = str_sub(seat_sought, 18, 21)
+  ) %>%
+  select(member, senate_district)
+
+entity_donors <- entity_donors %>% #Dude, idk why all types of joins are screwing me so using distinct as a quick fix rn
+  left_join(reps, "member") %>%
+  left_join(senate, "member") %>%
+  distinct(member, donor_name, .keep_all = TRUE)
+
+write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
+
+entity_donors %>%
+  filter(is.na(senate_district)&is.na(house_district)) %>%
+  View()
+
+donors %>%
+  filter(is.na(district)) %>%
+  View()
 
 
 
 #Prep SHP Files
-senate_shape <- st_read("D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3.shp", stringsAsFactors=FALSE) %>%
+senate_shape <-
+  st_read("D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3.shp",
+          stringsAsFactors=FALSE) %>%
   rename(senate_district = DISTRICT)
 
-house_shape <- st_read("D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25.shp", stringsAsFactors=FALSE) %>%
+st_write(senate_shape, "D:/RStudio/state_congress/Shapefiles/Senate Consensus Nonpartisan Map v3_v2.shp")
+
+
+house_shape <-
+  st_read("D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25.shp",
+          stringsAsFactors=FALSE) %>%
   rename(house_district = DISTRICT)
+
+st_write(house_shape, "D:/RStudio/state_congress/Shapefiles/HB 1020 H Red Comm CSBK-25_v2.shp")
