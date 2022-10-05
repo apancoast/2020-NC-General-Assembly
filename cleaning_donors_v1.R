@@ -500,16 +500,20 @@ entity_donors <- full_join(entity_donors, donors, "member") %>%
   select(district.x, member, donor_name, tot_from_donor, tot_to_candidate, party, counties, term_start) %>%
   rename(seat_won = district.x)
 
+entity_donors <- entity_donors %>%
+  mutate(seat_won = gsub("North Carolina House of Representatives", "Representative", seat_won),
+         seat_won = gsub("North Carolina State Senate", "Senator", seat_won))
+
 #Prep for SHP Files ----
 reps <- entity_donors %>%
   filter(grepl("Representative", seat_won)) %>%
-  mutate(house_district = str_sub(seat_won, 50, 53)
+  mutate(house_district = str_sub(seat_won, 25, 27)
   ) %>%
   select(member, house_district)
 
 senate <- entity_donors %>%
-  filter(grepl("Senate", seat_won)) %>%
-  mutate(senate_district = str_sub(seat_won, 38, 39)
+  filter(grepl("Senator", seat_won)) %>%
+  mutate(senate_district = str_sub(seat_won, 18, 21)
   ) %>%
   select(member, senate_district)
 
@@ -519,3 +523,5 @@ entity_donors <- entity_donors %>% #Dude, idk why all types of joins are screwin
   distinct(member, donor_name, .keep_all = TRUE)
 
 write.csv(entity_donors, "D:/RStudio/state_congress/CSVs/entity_donors.csv")
+
+#Adding missing districts in excel because... I'm in a hurry?
