@@ -30,7 +30,7 @@ cleaning_donors.R ends with a small bit of transformation to prepare the data fo
 ## Phase 4 - Tableau
 entity_donors.csv and Shapefiles from https://ncleg.gov/Redistricting, Enacted 2019.
 
-https://public.tableau.com/app/profile/ashley.pancoast/viz/2020GeneralAssembly/DonorsDash
+View at https://public.tableau.com/app/profile/ashley.pancoast/viz/2020GeneralAssembly/DonorsDash
 
 # Future Plans
 ## Explore
